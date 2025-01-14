@@ -35,6 +35,9 @@ Coral Ruschak
 [LinkedIn](https://www.linkedin.com/in/coral-ruschak-682898170/)
 [GitHub](https://github.com/Coralruschak)
 
+Mark Kendall  
+[LinkedIn profile](https://www.linkedin.com/in/mark-kendall-786b0b2a8/)  
+[GitHub profile](https://github.com/mkendall42)  
 
 <!-- # SimpleCov Setup
 
