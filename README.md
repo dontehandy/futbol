@@ -17,8 +17,29 @@ Include link to your initial DTR document and the date it was completed. If you 
 
 Create a section in your README called “Contributors”. List each group member’s name and link to their LinkedIn and Github profiles.
 
+# SimpleCov Setup
+
+To monitor test coverage with SimpleCov, follow these steps:
+
+1. Add SimpleCov to your Gemfile:
+    ```ruby
+    gem 'simplecov', require: false, group: :test
+    ```
+
+2. Run `bundle install` to install the gem.
+
+3. At the top of your `test_helper.rb` or `spec_helper.rb` file, add the following lines:
+    ```ruby
+    require 'simplecov'
+    SimpleCov.start
+    ```
+
+4. Run your tests as usual. SimpleCov will generate a coverage report in the `coverage` directory.
+
 # Contributors #
 
 Donte Handy 
 LinkedIn: https://www.linkedin.com/in/dontehandy/
 GitHub: https://github.com/dontehandy
+
+
