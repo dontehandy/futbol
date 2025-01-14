@@ -31,6 +31,10 @@ Chase Phillips
 LinkedIn: https://www.linkedin.com/in/chase-phillips-001302111/
 GitHub: https://github.com/ChasePhillips89
 
+Coral Ruschak
+[LinkedIn](https://www.linkedin.com/in/coral-ruschak-682898170/)
+[GitHub](https://github.com/Coralruschak)
+
 
 <!-- # SimpleCov Setup
 
