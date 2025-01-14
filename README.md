@@ -14,12 +14,10 @@ A 2-3 sentence summary describing the different approaches your group discussed 
 A 2-3 sentence summary describing your approach to the code design. -->
 
 Include link to your initial DTR document and the date it was completed. If you do additional DTRs later in the project, you should link the revised versions here as well with the date. New versions should be listed alongside older versions. Do not delete old DTRs.
+# DTR Document #
 
-https://docs.google.com/document/d/1dS02D4JhDYynw1QMaruTkvfiAfEL96Kf5MeP3zYjDWQ/edit?tab=t.0
-
-
-Create a section in your README called “Contributors”. List each group member’s name and link to their LinkedIn and Github profiles.
-
+[The Audibles Project DTR](https://docs.google.com/document/d/1dS02D4JhDYynw1QMaruTkvfiAfEL96Kf5MeP3zYjDWQ/edit?tab=t.0)
+Completed: 14 January 2025
 
 # Contributors #
 
