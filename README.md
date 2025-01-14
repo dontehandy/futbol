@@ -1,4 +1,4 @@
-# Futbol
+<!-- # Futbol
 
 Starter repository for the [Turing School](https://turing.edu/) Futbol project.
 
@@ -11,13 +11,24 @@ A 2-4 sentence summary of your plan for project organization and workflow. This 
 
 A 2-3 sentence summary describing the different approaches your group discussed for project organization and how you collectively made a decision on which to use.
 
-A 2-3 sentence summary describing your approach to the code design.
+A 2-3 sentence summary describing your approach to the code design. -->
 
 Include link to your initial DTR document and the date it was completed. If you do additional DTRs later in the project, you should link the revised versions here as well with the date. New versions should be listed alongside older versions. Do not delete old DTRs.
 
+https://docs.google.com/document/d/1dS02D4JhDYynw1QMaruTkvfiAfEL96Kf5MeP3zYjDWQ/edit?tab=t.0
+
+
 Create a section in your README called “Contributors”. List each group member’s name and link to their LinkedIn and Github profiles.
 
-# SimpleCov Setup
+
+# Contributors #
+
+Donte Handy 
+LinkedIn: https://www.linkedin.com/in/dontehandy/
+GitHub: https://github.com/dontehandy
+
+
+<!-- # SimpleCov Setup
 
 To monitor test coverage with SimpleCov, follow these steps:
 
@@ -35,11 +46,4 @@ To monitor test coverage with SimpleCov, follow these steps:
     ```
 
 4. Run your tests as usual. SimpleCov will generate a coverage report in the `coverage` directory.
-
-# Contributors #
-
-Donte Handy 
-LinkedIn: https://www.linkedin.com/in/dontehandy/
-GitHub: https://github.com/dontehandy
-
-
+ -->
