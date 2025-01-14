@@ -17,4 +17,8 @@ Include link to your initial DTR document and the date it was completed. If you 
 
 Create a section in your README called “Contributors”. List each group member’s name and link to their LinkedIn and Github profiles.
 
-#123
+# Contributors #
+
+Donte Handy 
+LinkedIn: https://www.linkedin.com/in/dontehandy/
+GitHub: https://github.com/dontehandy
