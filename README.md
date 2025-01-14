@@ -24,12 +24,12 @@ Create a section in your README called “Contributors”. List each group membe
 # Contributors #
 
 Donte Handy 
-LinkedIn: https://www.linkedin.com/in/dontehandy/
-GitHub: https://github.com/dontehandy
+[LinkedIn](https://www.linkedin.com/in/dontehandy/)
+[GitHub](https://github.com/dontehandy)
 
 Chase Phillips
-LinkedIn: https://www.linkedin.com/in/chase-phillips-001302111/
-GitHub: https://github.com/ChasePhillips89
+[LinkedIn](https://www.linkedin.com/in/chase-phillips-001302111/)
+[GitHub](https://github.com/ChasePhillips89)
 
 Coral Ruschak
 [LinkedIn](https://www.linkedin.com/in/coral-ruschak-682898170/)
