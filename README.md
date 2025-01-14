@@ -27,6 +27,10 @@ Donte Handy
 LinkedIn: https://www.linkedin.com/in/dontehandy/
 GitHub: https://github.com/dontehandy
 
+Chase Phillips
+LinkedIn: https://www.linkedin.com/in/chase-phillips-001302111/
+GitHub: https://github.com/ChasePhillips89
+
 
 <!-- # SimpleCov Setup
 
