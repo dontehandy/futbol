@@ -37,22 +37,14 @@ Mark Kendall
 [LinkedIn profile](https://www.linkedin.com/in/mark-kendall-786b0b2a8/)  
 [GitHub profile](https://github.com/mkendall42)  
 
-<!-- # SimpleCov Setup
 
-To monitor test coverage with SimpleCov, follow these steps:
 
-1. Add SimpleCov to your Gemfile:
-    ```ruby
-    gem 'simplecov', require: false, group: :test
-    ```
+<!-- From the futbol_spec_harness directory, in the command line run bundle exec rspec. This will run a test suite for the StatTracker class as described in the project page.
 
-2. Run `bundle install` to install the gem.
+In order for the test suite to run, all requirement statements inside your project's lib directory need to be require_relative rather than require. For example, if in your stat_tracker.rb file you have a line:
 
-3. At the top of your `test_helper.rb` or `spec_helper.rb` file, add the following lines:
-    ```ruby
-    require 'simplecov'
-    SimpleCov.start
-    ```
+require './lib/helper_class'
+You should change it to use a require_relative:
 
-4. Run your tests as usual. SimpleCov will generate a coverage report in the `coverage` directory.
- -->
+require_relative './helper_class'
+<!-- You do not need to change any of the require statements inside your spec directory. --> 
