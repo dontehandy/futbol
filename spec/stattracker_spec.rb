@@ -54,6 +54,13 @@ RSpec.describe StatTracker do
     end
   end
   
+  describe '#away_wins' do
+    it 'counts all the away wins from the short_test_games.csv accurately' do
+      expect(@stat_tracker_short.away_wins).to eq(8)
+    end
+  end
+
+end
   describe "#average_goals_per_game" do
     it "returns average goals per game over all seasons - from short_games.csv" do
       expect(@stat_tracker_short.average_goals_per_game()).to eq((90.0 / 20.0))     #90 total goals for 20 games in CSV file
