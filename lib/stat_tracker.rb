@@ -47,4 +47,14 @@ class StatTracker
 
     min_score
   end
+
+  def average_goals_per_game()
+    #Average over ALL games (and here total goals, i.e. away + home, is measured)
+    total_goals = @games.sum do |game|
+      game[:away_goals].to_i + game[:home_goals].to_i
+    end
+
+    (total_goals.to_f / @games.length).round(2)
+  end
+
 end
