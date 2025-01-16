@@ -14,3 +14,6 @@ RSpec.configure do |config|
   end
   # Additional RSpec configuration can go here
 end
+
+
+# open coverage/index.html after running rspec
