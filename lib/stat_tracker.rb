@@ -47,4 +47,36 @@ class StatTracker
 
     min_score
   end
+
+  def average_goals_per_game()
+    #Average over ALL games (and here total goals, i.e. away + home, is measured)
+    total_goals = @games.sum do |game|
+      game[:away_goals].to_i + game[:home_goals].to_i
+    end
+
+    # binding.pry
+
+    (total_goals.to_f / @games.length).round(2)
+  end
+
+  def average_goals_by_season()
+    #Construct hash of games by each season
+    #Could build this an alternate way later - consider refactor
+    goals_by_season_hash = {}
+    games_by_season_hash = @games.group_by do |game|
+      game[:season]
+    end
+
+    games_by_season_hash.keys.each do |season_of_games|
+      total_goals_in_season = games_by_season_hash[season_of_games].sum do |game_in_single_season|
+        #Re-using finding total goals here...maybe refactor this too later
+        game_in_single_season[:home_goals].to_i + game_in_single_season[:away_goals].to_i
+      end
+      
+      goals_by_season_hash[season_of_games] = (total_goals_in_season.to_f / games_by_season_hash[season_of_games].length).round(2)
+    end
+
+    goals_by_season_hash
+  end
+
 end
