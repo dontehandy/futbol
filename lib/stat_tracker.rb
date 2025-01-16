@@ -47,4 +47,8 @@ class StatTracker
 
     min_score
   end
+ 
+  def total_games
+    @games.count
+  end
 end
