@@ -62,5 +62,11 @@ class StatTracker
     @games.count do |game|
       game[:away_goals] > game[:home_goals]
     end
+  end
+
+  def ties
+    @games.count do |game|
+      game[:away_goals] == game[:home_goals]
+    end
   end 
 end
