@@ -51,6 +51,10 @@ class StatTracker
   def percentage_home_wins
     home_wins.fdiv(total_games).round(2)
   end
+
+  def percentage_visitor_wins
+    away_wins.fdiv(total_games).round(2)
+  end
  
   def total_games
     @games.count
