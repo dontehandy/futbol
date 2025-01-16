@@ -47,6 +47,10 @@ class StatTracker
 
     min_score
   end
+
+  def percentage_home_wins
+    home_wins.fdiv(total_games).round(2)
+  end
  
   def total_games
     @games.count
