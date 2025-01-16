@@ -50,6 +50,40 @@ class StatTracker
     min_score
   end
 
+  def percentage_home_wins
+    home_wins.fdiv(total_games).round(2)
+  end
+
+  def percentage_visitor_wins
+    away_wins.fdiv(total_games).round(2)
+  end
+
+  def percentage_ties
+    ties.fdiv(total_games).round(2)
+  end 
+ 
+  def total_games
+    @games.count
+  end
+
+  def home_wins
+    @games.count do |game|
+      game[:away_goals] < game[:home_goals]
+    end
+  end
+
+  def away_wins
+    @games.count do |game|
+      game[:away_goals] > game[:home_goals]
+    end
+  end
+
+  def ties
+    @games.count do |game|
+      game[:away_goals] == game[:home_goals]
+    end
+  end 
+  
   def average_goals_per_game()
     #Average over ALL games (and here total goals, i.e. away + home, is measured)
     total_goals = @games.sum do |game|
