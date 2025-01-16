@@ -13,6 +13,7 @@ RSpec.describe StatTracker do
 
   before(:each) do
     @stat_tracker = StatTracker.from_csv(locations)
+    @stat_tracker.create_all_games
 
     #Here's another instance with shorter datasets loaded for simpler testing:
     shorter_data_locations = {
