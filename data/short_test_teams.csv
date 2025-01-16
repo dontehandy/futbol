@@ -1,0 +1,21 @@
+team_id,franchiseId,teamName,abbreviation,Stadium,link
+29,36,Orlando Pride,FLP,Exploria Stadium,/api/v1/teams/29
+54,38,Reign FC,RFC,Cheney Stadium,/api/v1/teams/54
+13,33,Houston Dash,HOD,BBVA Stadium,/api/v1/teams/13
+22,25,Washington Spirit FC,WAS,Maryland SoccerPlex,/api/v1/teams/22
+28,29,Los Angeles FC,LFC,Banc of California Stadium,/api/v1/teams/28
+20,21,Toronto FC,TOR,BMO Field,/api/v1/teams/20
+5,17,Sporting Kansas City,SKC,Children's Mercy Park,/api/v1/teams/5
+53,28,Columbus Crew SC,CCS,Mapfre Stadium,/api/v1/teams/53
+2,22,Seattle Sounders FC,SEA,Centruy Link Field,/api/v1/teams/2
+52,35,Portland Thorns FC,ORT,Providence Park,/api/v1/teams/52
+9,30,New York City FC,NYC,Yankee Stadium,/api/v1/teams/9
+1,23,Atlanta United,ATL,Mercedes-Benz Stadium,/api/v1/teams/1
+16,11,New England Revolution,NE,Gillette Stadium,/api/v1/teams/16
+19,18,Philadelphia Union,PHI,Talen Energy Stadium,/api/v1/teams/19
+27,28,San Jose Earthquakes,SJ,Avaya Stadium,/api/v1/teams/27
+15,24,Portland Timbers,POR,Providence Park,/api/v1/teams/15
+30,37,Orlando City SC,ORL,Exploria Stadium,/api/v1/teams/30
+25,15,Chicago Red Stars,CRS,SeatGeek Stadium,/api/v1/teams/25
+6,6,FC Dallas,DAL,Toyota Stadium,/api/v1/teams/6
+7,19,Utah Royals FC,URF,Rio Tinto Stadium,/api/v1/teams/7
