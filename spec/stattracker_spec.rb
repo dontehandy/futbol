@@ -13,6 +13,7 @@ RSpec.describe StatTracker do
 
   before(:each) do
     @stat_tracker = StatTracker.from_csv(locations)
+    # @stat_tracker.create_all_games
 
     #Here's another instance with shorter datasets loaded for simpler testing:
     shorter_data_locations = {
@@ -21,6 +22,7 @@ RSpec.describe StatTracker do
       game_teams: './data/short_test_game_teams.csv',
     }
     @stat_tracker_short = StatTracker.from_csv(shorter_data_locations)
+    @stat_tracker_short.create_all_games
   end
 
   
@@ -72,6 +74,12 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.average_goals_by_season()).to eq({"20122013"=>4.12, "20132014"=>4.19, "20142015"=>4.14, "20152016"=>4.16, "20162017"=>4.23, "20172018"=>4.44})
     end
   end
+
+   describe "creates all games in a dataset" do
+    it "returns all games in a smaller dataset" do
+      expect(@stat_tracker_short.matches.length).to eq(20)
+    end
+   end
 
 
   #League statistics

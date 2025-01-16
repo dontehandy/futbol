@@ -1,7 +1,9 @@
 require 'csv'
+require 'pry'
+require './lib/game'
 
 class StatTracker
-  attr_reader :games, :teams, :game_teams
+  attr_reader :games, :teams, :game_teams, :matches
 
   def initialize()
     @games = []
@@ -113,6 +115,38 @@ class StatTracker
     end
 
     goals_by_season_hash
+  end
+
+  def game_teams_home_data(game_id) 
+    home_teams = {}
+    game_id_home = @game_teams.each do |game|
+      if game[:game_id] == game_id && game[:hoa] == "home"
+        home_teams = game.to_h
+        break
+      end
+
+    end
+    home_teams
+  end
+
+  def game_teams_away_data(game_id) 
+    away_teams = {}
+    game_id_away = @game_teams.each do |game|
+      if game[:game_id] == game_id && game[:hoa] == "away"
+        away_teams = game.to_h
+        break
+      end
+
+    end
+    away_teams
+  end
+
+  def create_all_games
+    @matches = []
+    @games.each do |game|
+      @matches << Game.new(game, game_teams_home_data(game[:game_id]), game_teams_away_data(game[:game_id]))
+    # break if @matches.length > 1000
+    end
   end
 
 end
