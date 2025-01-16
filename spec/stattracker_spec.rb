@@ -1,6 +1,6 @@
 
 require 'spec_helper'
- 
+require 'csv' 
 
 RSpec.describe StatTracker do
   let(:locations) do
