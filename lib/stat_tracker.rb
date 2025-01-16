@@ -115,4 +115,10 @@ class StatTracker
     goals_by_season_hash
   end
 
+  def count_of_games_by_season
+    games_by_season = Hash.new(0)
+    @games.each { |game| games_by_season[game[:season]] += 1 }
+    games_by_season
+  end
+
 end
