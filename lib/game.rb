@@ -18,7 +18,7 @@ class Game
     @date_time = game_data[:date_time]
 
     #NOTE: starting here, these variables seem like they will never be used in the project (no StatTracker method will need them, methinks?)
-    # @home_pim           #WTF is PIM?
+    # @home_pim           #WTF is PIM? Penalty Minutes :^)
     # @away_pim
     # @home_power_play_opps
     # @away_power_play_opps

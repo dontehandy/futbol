@@ -1,4 +1,5 @@
 require 'csv'
+require 'pry'
 
 class StatTracker
   attr_reader :games, :teams, :game_teams
@@ -114,5 +115,29 @@ class StatTracker
 
     goals_by_season_hash
   end
+
+  def game_teams_home_data(game_id) 
+    home_teams = {}
+    game_id_home = @game_teams.each do |game|
+      if game[:game_id] == game_id && game[:hoa] == "home"
+        home_teams = game.to_h
+      end
+
+    end
+    home_teams
+  end
+
+  def game_teams_away_data(game_id) 
+    away_teams = {}
+    game_id_away = @game_teams.each do |game|
+      if game[:game_id] == game_id && game[:hoa] == "away"
+        away_teams = game.to_h
+      end
+
+    end
+    away_teams
+  end
+
+  def 
 
 end
