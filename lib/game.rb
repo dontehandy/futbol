@@ -6,7 +6,7 @@
 # - I have left out instance variables from the raw data that it doesn't look like we'll use (venue, pim, etc.)  These can be added if needed, of course.
 
 class Game
-  attr_reader there will be a shitton of these!
+  attr_reader :game_id, :season, :type, :date_time, :game_stats
 
   def initialize(game_data, game_teams_home_data, game_teams_away_data)
     #IMPORTANT: game_data, game_teams_data are data for ONLY THIS game - needs to be selected before passing in!
@@ -38,15 +38,15 @@ class Game
       :home => {team: nil,                          #The team objects need to be associated with their respective teams (by id) once the team objects are built
         team_id: game_data[:home_team_id].to_i,
         goals: game_data[:home_goals].to_i,
-        result: game_teams_home_data[:result]
+        result: game_teams_home_data[:result],
         head_coach: game_teams_home_data[:head_coach],
         shots: game_teams_home_data[:shots].to_i,
-        tackles: game_teams_data[:tackles].to_i},
+        tackles: game_teams_home_data[:tackles].to_i},
       :away => {team: nil,
         team_id: game_data[:away_team_id].to_i,
         goals: game_data[:away_goals].to_i,
-        result: game_teams_away_data[:result]
-        head_coach: game_teams_away_data[:head_coach]
+        result: game_teams_away_data[:result],
+        head_coach: game_teams_away_data[:head_coach],
         shots: game_teams_away_data[:shots].to_i,
         tackles: game_teams_away_data[:tackles].to_i}
     }
