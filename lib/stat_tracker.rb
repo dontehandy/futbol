@@ -51,4 +51,10 @@ class StatTracker
   def total_games
     @games.count
   end
+
+  def home_wins
+    @games.count do |game|
+      game[:away_goals] < game[:home_goals]
+    end
+  end 
 end
