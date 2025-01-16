@@ -1,4 +1,16 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  enable_coverage :branch
+end
 
-# ...existing code...
+require 'rspec'
+require './lib/stat_tracker'
+require 'pry'
+require 'csv'
+
+RSpec.configure do |config|
+  config.before(:suite) do
+    SimpleCov.start
+  end
+  # Additional RSpec configuration can go here
+end
