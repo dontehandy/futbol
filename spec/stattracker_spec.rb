@@ -1,4 +1,3 @@
-
 require 'spec_helper'
 require 'csv' 
 
@@ -103,6 +102,19 @@ RSpec.describe StatTracker do
     end
    end
 
+  describe '#count_of_games_by_season' do
+    it 'returns a hash with season names as keys and counts of games as values' do
+      expected = {
+        "20122013" => 3,
+        "20132014" => 5,
+        "20142015" => 2,
+        "20152016" => 3,
+        "20162017" => 5,
+        "20172018" => 2
+      }
+      expect(@stat_tracker_short.count_of_games_by_season).to eq(expected)
+    end
+  end
 
   #League statistics
 
