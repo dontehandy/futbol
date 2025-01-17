@@ -103,11 +103,22 @@ RSpec.describe StatTracker do
     end
    end
 
+   describe '#highest_scoring_visitor' do
+    it 'returns the team with the highest average score when away from short_games.csv' do
+    expect(@stat_tracker_short.highest_scoring_visitor).to eq("Orlando City SC")
+    end
+  end
 
-  #League statistics
+  describe '#highest_scoring_home' do
+    it 'returns the team with the highest average score when home from short_games.csv' do
+    expect(@stat_tracker_short.highest_scoring_home).to eq("Portland Thorns FC")
+    end
+  end
 
-
-  #Season statistics
-  
+  describe '#lowest_scoring_home' do
+    it 'returns the team with the lowest average score when home from short_games.csv' do
+    expect(@stat_tracker_short.lowest_scoring_home).to eq("Utah Royals FC")
+    end
+  end
 end
 
