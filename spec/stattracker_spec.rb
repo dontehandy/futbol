@@ -102,6 +102,11 @@ RSpec.describe StatTracker do
     end
    end
 
+
+   describe '#highest_scoring_visitor' do
+    it 'returns the team with the highest average score when visitor from short_games.csv' do
+    expect(@stat_tracker_short.highest_scoring_visitor).to eq("Orlando City SC")
+
   describe '#count_of_games_by_season' do
     it 'returns a hash with season names as keys and counts of games as values' do
       expected = {
@@ -113,13 +118,26 @@ RSpec.describe StatTracker do
         "20172018" => 2
       }
       expect(@stat_tracker_short.count_of_games_by_season).to eq(expected)
+
     end
   end
 
-  #League statistics
+  describe '#highest_scoring_home' do
+    it 'returns the team with the highest average score when home from short_games.csv' do
+    expect(@stat_tracker_short.highest_scoring_home).to eq("Portland Thorns FC")
+    end
+  end
 
+  describe '#lowest_scoring_home' do
+    it 'returns the team with the lowest average score when home from short_games.csv' do
+    expect(@stat_tracker_short.lowest_scoring_home).to eq("Utah Royals FC")
+    end
+  end
 
-  #Season statistics
-  
+  describe '#lowest_scoring_home' do
+    it 'returns the team with the lowest average score when home from short_games.csv' do
+    expect(@stat_tracker_short.lowest_scoring_home).to eq("Utah Royals FC")
+    end
+  end
 end
 
