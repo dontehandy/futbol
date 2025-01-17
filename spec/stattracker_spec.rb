@@ -1,4 +1,3 @@
-
 require 'spec_helper'
 require 'csv' 
 
@@ -103,9 +102,23 @@ RSpec.describe StatTracker do
     end
    end
 
+
    describe '#highest_scoring_visitor' do
     it 'returns the team with the highest average score when visitor from short_games.csv' do
     expect(@stat_tracker_short.highest_scoring_visitor).to eq("Orlando City SC")
+
+  describe '#count_of_games_by_season' do
+    it 'returns a hash with season names as keys and counts of games as values' do
+      expected = {
+        "20122013" => 3,
+        "20132014" => 5,
+        "20142015" => 2,
+        "20152016" => 3,
+        "20162017" => 5,
+        "20172018" => 2
+      }
+      expect(@stat_tracker_short.count_of_games_by_season).to eq(expected)
+
     end
   end
 

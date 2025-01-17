@@ -149,6 +149,7 @@ class StatTracker
     end
   end
 
+
   def highest_scoring_visitor
     team_scores = {}
   
@@ -257,4 +258,12 @@ class StatTracker
   
     @teams.find { |team| team[:team_id] == lowest_team_id }[:teamname]
   end
+
+  def count_of_games_by_season
+    games_by_season = Hash.new(0)
+    @games.each { |game| games_by_season[game[:season]] += 1 }
+    games_by_season
+  end
+
+
 end
