@@ -156,4 +156,121 @@ class StatTracker
     end
   end
 
+
+  def highest_scoring_visitor
+    team_scores = {}
+  
+    @game_teams.each do |game|
+      if game[:hoa] == 'away'
+        team_id = game[:team_id]
+        if team_scores[team_id].nil?
+          team_scores[team_id] = [0, 0]  # [total goals, games played]
+        end
+        team_scores[team_id][0] += game[:goals].to_i
+        team_scores[team_id][1] += 1
+      end
+    end
+    highest_team_id = nil
+    highest_avg_score = 0
+  
+    team_scores.each do |team_id, (total_goals, games_played)|
+      avg_score = total_goals.to_f / games_played
+      if avg_score > highest_avg_score
+        highest_avg_score = avg_score
+        highest_team_id = team_id
+      end
+    end
+    @teams.find { |team| team[:team_id] == highest_team_id }[:teamname]
+  end
+
+  def highest_scoring_home
+    team_scores = {}
+  
+    @game_teams.each do |game|
+      if game[:hoa] == 'home'
+        team_id = game[:team_id]
+        if team_scores[team_id].nil?
+          team_scores[team_id] = [0, 0] 
+        end
+        team_scores[team_id][0] += game[:goals].to_i
+        team_scores[team_id][1] += 1
+      end
+    end
+  
+    highest_team_id = nil
+    highest_avg_score = 0
+  
+    team_scores.each do |team_id, (total_goals, games_played)|
+      avg_score = total_goals.to_f / games_played
+      if avg_score > highest_avg_score
+        highest_avg_score = avg_score
+        highest_team_id = team_id
+      end
+    end
+    @teams.find { |team| team[:team_id] == highest_team_id }[:teamname]
+  end
+
+  def lowest_scoring_home
+    team_scores = {}
+  
+    @game_teams.each do |game|
+      if game[:hoa] == 'home'
+        team_id = game[:team_id]
+        if team_scores[team_id].nil?
+          team_scores[team_id] = [0, 0]
+        end
+        team_scores[team_id][0] += game[:goals].to_i
+        team_scores[team_id][1] += 1
+      end
+    end
+  
+    lowest_team_id = nil
+    lowest_avg_score = 999
+  
+    team_scores.each do |team_id, (total_goals, games_played)|
+      avg_score = total_goals.to_f / games_played
+      if avg_score < lowest_avg_score
+        lowest_avg_score = avg_score
+        lowest_team_id = team_id
+      end
+    end
+  
+    @teams.find { |team| team[:team_id] == lowest_team_id }[:teamname]
+  end
+
+  def lowest_scoring_visitor
+    team_scores = {}
+  
+    @game_teams.each do |game|
+      if game[:hoa] == 'away'
+        team_id = game[:team_id]
+        if team_scores[team_id].nil?
+          team_scores[team_id] = [0, 0]
+        end
+        team_scores[team_id][0] += game[:goals].to_i
+        team_scores[team_id][1] += 1
+      end
+    end
+  
+    lowest_team_id = nil
+    lowest_avg_score = 999
+  
+    team_scores.each do |team_id, (total_goals, games_played)|
+      avg_score = total_goals.to_f / games_played
+      if avg_score < lowest_avg_score
+        lowest_avg_score = avg_score
+        lowest_team_id = team_id
+      end
+    end
+  
+    @teams.find { |team| team[:team_id] == lowest_team_id }[:teamname]
+  end
+
+  def count_of_games_by_season
+    games_by_season = Hash.new(0)
+    @games.each { |game| games_by_season[game[:season]] += 1 }
+    games_by_season
+  end
+
+
 end
