@@ -229,4 +229,32 @@ class StatTracker
   
     @teams.find { |team| team[:team_id] == lowest_team_id }[:teamname]
   end
+
+  def lowest_scoring_visitor
+    team_scores = {}
+  
+    @game_teams.each do |game|
+      if game[:hoa] == 'away'
+        team_id = game[:team_id]
+        if team_scores[team_id].nil?
+          team_scores[team_id] = [0, 0]
+        end
+        team_scores[team_id][0] += game[:goals].to_i
+        team_scores[team_id][1] += 1
+      end
+    end
+  
+    lowest_team_id = nil
+    lowest_avg_score = 999
+  
+    team_scores.each do |team_id, (total_goals, games_played)|
+      avg_score = total_goals.to_f / games_played
+      if avg_score < lowest_avg_score
+        lowest_avg_score = avg_score
+        lowest_team_id = team_id
+      end
+    end
+  
+    @teams.find { |team| team[:team_id] == lowest_team_id }[:teamname]
+  end
 end
