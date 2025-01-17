@@ -3,7 +3,7 @@ require 'pry'
 require './lib/game'
 
 class StatTracker
-  attr_reader :games, :teams, :game_teams, :matches
+  attr_reader :games, :teams, :game_teams, :matches, :clubs
 
   def initialize()
     @games = []
@@ -146,6 +146,13 @@ class StatTracker
     @games.each do |game|
       @matches << Game.new(game, game_teams_home_data(game[:game_id]), game_teams_away_data(game[:game_id]))
     # break if @matches.length > 1000
+    end
+  end
+
+  def create_all_teams
+    @clubs = []
+    @teams.each do |team|
+      @clubs << Team.new(team[:team_id], team[:teamName])
     end
   end
 
