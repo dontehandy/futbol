@@ -9,6 +9,8 @@ class StatTracker
     @games = []
     @teams = []
     @game_teams = []
+    @matches = []
+    @clubs = []
   end
 
   def self.from_csv(locations)
@@ -65,26 +67,26 @@ class StatTracker
   end 
  
   def total_games
-    @games.count
+    @matches.count
   end
 
   def home_wins
-    @games.count do |game|
-      game[:away_goals] < game[:home_goals]
+    @matches.count do |game|
+      game.game_stats[:away][:goals] < game.game_stats[:home][:goals]
     end
   end
 
   def away_wins
-    @games.count do |game|
-      game[:away_goals] > game[:home_goals]
+    @matches.count do |game|
+      game.game_stats[:away][:goals] > game.game_stats[:home][:goals]
     end
   end
 
   def ties
-    @games.count do |game|
-      game[:away_goals] == game[:home_goals]
+    @matches.count do |game|
+      game.game_stats[:away][:goals] == game.game_stats[:home][:goals]
     end
-  end 
+  end
   
   def average_goals_per_game()
     #Average over ALL games (and here total goals, i.e. away + home, is measured)
@@ -142,7 +144,6 @@ class StatTracker
   end
 
   def create_all_games
-    @matches = []
     @games.each do |game|
       @matches << Game.new(game, game_teams_home_data(game[:game_id]), game_teams_away_data(game[:game_id]))
     # break if @matches.length > 1000
@@ -150,7 +151,6 @@ class StatTracker
   end
 
   def create_all_teams
-    @clubs = []
     @teams.each do |team|
       @clubs << Team.new(team[:team_id], team[:teamName])
     end
