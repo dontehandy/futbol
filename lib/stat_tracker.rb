@@ -341,4 +341,19 @@ class StatTracker
   def count_of_teams
     @teams.count
   end
+
+  def most_accurate_team(season)
+    team_shots_goals = Hash.new { |hash, key| hash[key] = { shots: 0, goals: 0 } }
+
+    @game_teams.each do |game_team|
+      game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless game[:season] == season
+
+      team_shots_goals[game_team[:team_id]][:shots] += game_team[:shots].to_i
+      team_shots_goals[game_team[:team_id]][:goals] += game_team[:goals].to_i
+    end
+
+    best_team_id = team_shots_goals.max_by { |team_id, stats| stats[:goals].to_f / stats[:shots] }.first
+    @teams.find { |team| team[:team_id] == best_team_id }[:teamname]
+  end
 end

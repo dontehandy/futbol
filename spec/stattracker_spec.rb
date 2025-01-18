@@ -171,5 +171,12 @@ RSpec.describe StatTracker do
       expect(@stat_tracker_short.worst_offense).to eq("Chicago Red Stars")
     end
   end
+
+  describe "#most_accurate_team" do
+    it "returns the team with the highest shots-to-goals ratio for the season" do
+      expect(@stat_tracker.most_accurate_team("20132014")).to eq "Real Salt Lake"
+      expect(@stat_tracker.most_accurate_team("20142015")).to eq "Toronto FC"
+    end
+  end
 end
 
