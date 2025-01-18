@@ -1,7 +1,3 @@
-require 'csv'
-require 'pry'
-require './lib/game'
-
 class StatTracker
   attr_reader :games, :teams, :game_teams, :matches, :clubs
 
@@ -9,8 +5,13 @@ class StatTracker
     @games = []
     @teams = []
     @game_teams = []
-    @matches = []
-    @clubs = []
+
+    @matches = []     #Array of actual game objects
+    @clubs = []       #Array of actual team objects
+
+    #Create games and teams, and make appropriate connections / associations
+    # create_all_games()
+    # create_all_teams()
   end
 
   def self.from_csv(locations)
@@ -28,6 +29,12 @@ class StatTracker
       # binding.pry
       stat_tracker.game_teams << row
     end
+
+    #Now that we have raw data, create games and teams, and make appropriate connections / associations
+    #NOTE: what immediately follows is the most 'expensive' part of all methods / classes
+    stat_tracker.create_all_games()
+    stat_tracker.create_all_teams()
+    stat_tracker.associate_games_and_teams()
 
     stat_tracker
   end
@@ -152,7 +159,7 @@ class StatTracker
 
   def create_all_teams
     @teams.each do |team|
-      @clubs << Team.new(team[:team_id], team[:teamName])
+      @clubs << Team.new(team)
     end
   end
 
@@ -317,6 +324,18 @@ class StatTracker
     games_by_season = Hash.new(0)
     @games.each { |game| games_by_season[game[:season]] += 1 }
     games_by_season
+  end
+
+  def associate_games_and_teams()
+    #First, associate teams to each game:
+    @matches.each do |game|
+      game.associate_teams_with_game(@clubs)
+    end
+
+    #Now, build array of games each team has played in:
+    @clubs.each do |team|
+      team.associate_games_with_team(@matches)
+    end
   end
 
   def count_of_teams
