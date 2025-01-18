@@ -67,7 +67,7 @@ class StatTracker
   end 
  
   def total_games
-    @matches.count
+    @games.count
   end
 
   def home_wins
