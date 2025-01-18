@@ -1,6 +1,7 @@
 require 'csv'
 require 'pry'
 require './lib/game'
+require './lib/team'
 
 class StatTracker
   attr_reader :games, :teams, :game_teams, :matches, :clubs
@@ -9,8 +10,13 @@ class StatTracker
     @games = []
     @teams = []
     @game_teams = []
-    @matches = []
-    @clubs = []
+
+    @matches = []     #Array of actual game objects
+    @clubs = []       #Array of actual team objects
+
+    #Create games and teams, and make appropriate connections / associations
+    # create_all_games()
+    # create_all_teams()
   end
 
   def self.from_csv(locations)
@@ -28,6 +34,10 @@ class StatTracker
       # binding.pry
       stat_tracker.game_teams << row
     end
+
+    #Now that we have raw data, create games and teams, and make appropriate connections / associations
+    stat_tracker.create_all_games()
+    stat_tracker.create_all_teams()
 
     stat_tracker
   end
@@ -152,7 +162,7 @@ class StatTracker
 
   def create_all_teams
     @teams.each do |team|
-      @clubs << Team.new(team[:team_id], team[:teamName])
+      @clubs << Team.new(team)
     end
   end
 

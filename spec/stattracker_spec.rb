@@ -96,16 +96,18 @@ RSpec.describe StatTracker do
     end
   end
 
-   describe "creates all games in a dataset" do
+  describe "creates all games in a dataset" do
     it "returns all games in a smaller dataset" do
       expect(@stat_tracker_short.matches.length).to eq(20)
     end
-   end
+  end
 
 
-   describe '#highest_scoring_visitor' do
+  describe '#highest_scoring_visitor' do
     it 'returns the team with the highest average score when visitor from short_games.csv' do
-    expect(@stat_tracker_short.highest_scoring_visitor).to eq("Orlando City SC")
+      expect(@stat_tracker_short.highest_scoring_visitor).to eq("Orlando City SC")
+    end
+  end
 
   describe '#count_of_games_by_season' do
     it 'returns a hash with season names as keys and counts of games as values' do

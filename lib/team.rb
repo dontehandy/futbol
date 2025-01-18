@@ -3,7 +3,7 @@ class Team
 
   def initialize(team_data)
     @team_id = team_data[:team_id]
-    @team_name = team_data[:teamName]
+    @team_name = team_data[:teamname]
   end
 end
    
