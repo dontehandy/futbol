@@ -342,18 +342,27 @@ class StatTracker
     @teams.count
   end
 
-  def most_accurate_team(season)
-    team_shots_goals = Hash.new { |hash, key| hash[key] = { shots: 0, goals: 0 } }
+  def most_accurate_team(season) # season is a string and looks like "20132014"
+    team_accuracy = {}
 
     @game_teams.each do |game_team|
-      game = @games.find { |g| g[:game_id] == game_team[:game_id] }
-      next unless game[:season] == season
+      matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless matching_game && matching_game[:season] == season
 
-      team_shots_goals[game_team[:team_id]][:shots] += game_team[:shots].to_i
-      team_shots_goals[game_team[:team_id]][:goals] += game_team[:goals].to_i
+      team_id = game_team[:team_id]
+      if team_accuracy[team_id].nil?
+        team_accuracy[team_id] = { goals: 0, shots: 0 }
+      end
+      team_accuracy[team_id][:goals] += game_team[:goals].to_i
+      team_accuracy[team_id][:shots] += game_team[:shots].to_i
     end
 
-    best_team_id = team_shots_goals.max_by { |team_id, stats| stats[:goals].to_f / stats[:shots] }.first
+    return nil if team_accuracy.empty?
+
+    best_team_id = team_accuracy.max_by do |team_id, stats|
+      stats[:goals].to_f / stats[:shots]
+    end&.first
+
     @teams.find { |team| team[:team_id] == best_team_id }[:teamname]
   end
 end
