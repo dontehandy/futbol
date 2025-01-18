@@ -183,5 +183,17 @@ RSpec.describe StatTracker do
       expect(@stat_tracker_short.most_accurate_team("20142015")).to eq nil #no matching game
     end
   end
+
+  describe "#least_accurate_team" do
+    it "returns the team with the lowest shots-to-goals ratio for the season" do
+      expect(@stat_tracker.least_accurate_team("20132014")).to eq "New York City FC"
+      expect(@stat_tracker.least_accurate_team("20142015")).to eq "Columbus Crew SC"
+    end
+
+    it "returns the team with the lowest shots-to-goals ratio for the season from short_games.csv" do
+      expect(@stat_tracker_short.least_accurate_team("20132014")).to eq nil #no matching game
+      expect(@stat_tracker_short.least_accurate_team("20142015")).to eq nil #no matching game
+    end
+  end
 end
 
