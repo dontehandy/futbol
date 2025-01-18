@@ -179,8 +179,8 @@ RSpec.describe StatTracker do
     end
 
     it "returns the team with the highest shots-to-goals ratio for the season from short_games.csv" do
-      expect(@stat_tracker_short.most_accurate_team("20132014")).to eq nil 
-      expect(@stat_tracker_short.most_accurate_team("20142015")).to eq nil 
+      expect(@stat_tracker_short.most_accurate_team("20132014")).to eq nil #no matching game 
+      expect(@stat_tracker_short.most_accurate_team("20142015")).to eq nil #no matching game
     end
   end
 end
