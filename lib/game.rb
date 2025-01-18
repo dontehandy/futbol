@@ -62,10 +62,10 @@ class Game
     return nil if !all_teams || all_teams.length == 0
 
     @game_stats[:away][:team] = all_teams.find do |team|
-      team[:team_id].to_i == @game_stats[:away][:team_id]
+      team.team_id.to_i == @game_stats[:away][:team_id]
     end
     @game_stats[:home][:team] = all_teams.find do |team|
-      team[:team_id].to_i == @game_stats[:home][:team_id]
+      team.team_id.to_i == @game_stats[:home][:team_id]
     end
   end
 

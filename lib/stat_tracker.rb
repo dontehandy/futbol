@@ -36,8 +36,10 @@ class StatTracker
     end
 
     #Now that we have raw data, create games and teams, and make appropriate connections / associations
+    #NOTE: what immediately follows is the most 'expensive' part of all methods / classes
     stat_tracker.create_all_games()
     stat_tracker.create_all_teams()
+    stat_tracker.associate_games_and_teams()
 
     stat_tracker
   end
@@ -282,5 +284,16 @@ class StatTracker
     games_by_season
   end
 
+  def associate_games_and_teams()
+    #First, associate teams to each game:
+    @matches.each do |game|
+      game.associate_teams_with_game(@clubs)
+    end
+
+    #Now, build array of games each team has played in:
+    @clubs.each do |team|
+      team.associate_games_with_team(@matches)
+    end
+  end
 
 end
