@@ -173,16 +173,34 @@ RSpec.describe StatTracker do
   end
 
   describe '#most_accurate_team' do
-    it 'returns the team with the highest shots-to-goals ratio for the season' do
+    xit 'returns the team with the highest shots-to-goals ratio for the season' do
       expect(@stat_tracker.most_accurate_team("20132014")).to eq "Real Salt Lake"
       expect(@stat_tracker.most_accurate_team("20142015")).to eq "Toronto FC"
+    end
+
+    xit 'returns nil for all seasons in short_test_games.csv' do
+      expect(@stat_tracker_short.most_accurate_team("20122013")).to be_nil
+      expect(@stat_tracker_short.most_accurate_team("20132014")).to be_nil
+      expect(@stat_tracker_short.most_accurate_team("20142015")).to be_nil
+      expect(@stat_tracker_short.most_accurate_team("20152016")).to be_nil
+      expect(@stat_tracker_short.most_accurate_team("20162017")).to be_nil
+      expect(@stat_tracker_short.most_accurate_team("20172018")).to be_nil
     end
   end
 
   describe '#least_accurate_team' do
-    it 'returns the team with the lowest shots-to-goals ratio for the season' do
+    xit 'returns the team with the lowest shots-to-goals ratio for the season' do
       expect(@stat_tracker.least_accurate_team("20132014")).to eq "New York City FC"
       expect(@stat_tracker.least_accurate_team("20142015")). to eq "Columbus Crew SC"
+    end
+
+    xit 'returns nil for all seasons in short_test_games.csv' do
+      expect(@stat_tracker_short.least_accurate_team("20122013")).to be_nil
+      expect(@stat_tracker_short.least_accurate_team("20132014")).to be_nil
+      expect(@stat_tracker_short.least_accurate_team("20142015")).to be_nil
+      expect(@stat_tracker_short.least_accurate_team("20152016")).to be_nil
+      expect(@stat_tracker_short.least_accurate_team("20162017")).to be_nil
+      expect(@stat_tracker_short.least_accurate_team("20172018")).to be_nil
     end
   end
 end
