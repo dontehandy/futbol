@@ -163,6 +163,53 @@ class StatTracker
     end
   end
 
+  def best_offense
+    team_scores = {}
+  
+    @game_teams.each do |game|
+      team_id = game[:team_id]
+      team_scores[team_id] ||= [0, 0] 
+      team_scores[team_id][0] += game[:goals].to_i
+      team_scores[team_id][1] += 1
+    end
+   
+    best_team_id = nil
+    highest_avg_score = 0
+  
+    team_scores.each do |team_id, (total_goals, games_played)|
+      avg_score = total_goals.to_f / games_played
+      if avg_score > highest_avg_score
+        highest_avg_score = avg_score
+        best_team_id = team_id
+      end
+    end
+    
+    @teams.find { |team| team[:team_id] == best_team_id }[:teamname]
+  end
+
+  def worst_offense
+    team_scores = {}
+  
+    @game_teams.each do |game|
+      team_id = game[:team_id]
+      team_scores[team_id] ||= [0, 0] 
+      team_scores[team_id][0] += game[:goals].to_i
+      team_scores[team_id][1] += 1
+    end
+  
+    worst_team_id = nil
+    lowest_avg_score = Float::INFINITY
+  
+    team_scores.each do |team_id, (total_goals, games_played)|
+      avg_score = total_goals.to_f / games_played
+      if avg_score < lowest_avg_score
+        lowest_avg_score = avg_score
+        worst_team_id = team_id
+      end
+    end
+  
+    @teams.find { |team| team[:team_id] == worst_team_id }[:teamname]
+  end
 
   def highest_scoring_visitor
     team_scores = {}
@@ -291,4 +338,7 @@ class StatTracker
     end
   end
 
+  def count_of_teams
+    @teams.count
+  end
 end

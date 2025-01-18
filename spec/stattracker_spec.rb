@@ -154,5 +154,22 @@ RSpec.describe StatTracker do
     expect(@stat_tracker_short.lowest_scoring_home).to eq("Utah Royals FC")
     end
   end
+
+  describe '#count_of_teams' do
+    it 'returns the count of teams' do
+      expect(@stat_tracker.count_of_teams).to eq(32)
+    end
+  end
+
+  describe '#offense ranks from short_games.csv' do
+    it 'returns the team with highest average score' do
+      expect(@stat_tracker_short.best_offense).to eq("Orlando City SC")
+
+    end
+
+    it 'returns the team with lowest average score' do
+      expect(@stat_tracker_short.worst_offense).to eq("Chicago Red Stars")
+    end
+  end
 end
 
