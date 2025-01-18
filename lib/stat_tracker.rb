@@ -1,8 +1,3 @@
-require 'csv'
-require 'pry'
-require './lib/game'
-require './lib/team'
-
 class StatTracker
   attr_reader :games, :teams, :game_teams, :matches, :clubs
 

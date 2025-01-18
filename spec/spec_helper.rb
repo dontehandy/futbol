@@ -5,6 +5,8 @@ end
 
 require 'rspec'
 require './lib/stat_tracker'
+require './lib/game'
+require './lib/team'
 require 'pry'
 require 'csv'
 
