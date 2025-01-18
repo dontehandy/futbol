@@ -345,6 +345,7 @@ class StatTracker
   def most_accurate_team(season)
     team_accuracy = {}
 
+    # Iterate through each game team to calculate goals and shots for each team in the given season
     @game_teams.each do |game_team|
       matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
       next unless matching_game && matching_game[:season] == season
@@ -357,6 +358,7 @@ class StatTracker
 
     return nil if team_accuracy.empty?
 
+    # Find the team with the highest goals-to-shots ratio
     best_team_id = team_accuracy.max_by { |team_id, stats| stats[:goals].to_f / stats[:shots] }&.first
 
     @teams.find { |team| team[:team_id] == best_team_id }[:teamname]
@@ -365,6 +367,7 @@ class StatTracker
   def least_accurate_team(season)
     team_accuracy = {}
 
+    # Iterate through each game team to calculate goals and shots for each team in the given season
     @game_teams.each do |game_team|
       matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
       next unless matching_game && matching_game[:season] == season
@@ -377,6 +380,7 @@ class StatTracker
 
     return nil if team_accuracy.empty?
 
+    # Find the team with the lowest goals-to-shots ratio
     worst_team_id = team_accuracy.min_by { |team_id, stats| stats[:goals].to_f / stats[:shots] }&.first
 
     @teams.find { |team| team[:team_id] == worst_team_id }[:teamname]
