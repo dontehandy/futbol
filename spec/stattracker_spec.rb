@@ -179,8 +179,14 @@ RSpec.describe StatTracker do
     end
 
     it "returns the team with the highest shots-to-goals ratio for the season from short_games.csv" do
-      expect(@stat_tracker_short.most_accurate_team("20132014")).to eq nil #no matching game 
-      expect(@stat_tracker_short.most_accurate_team("20142015")).to eq nil #no matching game
+      expect(@stat_tracker_short.most_accurate_team("20122013")).to eq nil # no matching game
+      expect(@stat_tracker_short.most_accurate_team("20132014")).to eq nil # no matching game
+      expect(@stat_tracker_short.most_accurate_team("20142015")).to eq nil # no matching game
+      expect(@stat_tracker_short.most_accurate_team("20152016")).to eq nil # no matching game
+      expect(@stat_tracker_short.most_accurate_team("20162017")).to eq nil # no matching game
+      expect(@stat_tracker_short.most_accurate_team("20172018")).to eq nil # no matching game
+      #we be stubbin'
+      
     end
   end
 
@@ -191,8 +197,13 @@ RSpec.describe StatTracker do
     end
 
     it "returns the team with the lowest shots-to-goals ratio for the season from short_games.csv" do
-      expect(@stat_tracker_short.least_accurate_team("20132014")).to eq nil #no matching game
-      expect(@stat_tracker_short.least_accurate_team("20142015")).to eq nil #no matching game
+      expect(@stat_tracker_short.least_accurate_team("20122013")).to eq nil # no matching game
+      expect(@stat_tracker_short.least_accurate_team("20132014")).to eq nil # no matching game
+      expect(@stat_tracker_short.least_accurate_team("20142015")).to eq nil # no matching game
+      expect(@stat_tracker_short.least_accurate_team("20152016")).to eq nil # no matching game
+      expect(@stat_tracker_short.least_accurate_team("20162017")).to eq nil # no matching game
+      expect(@stat_tracker_short.least_accurate_team("20172018")).to eq nil # no matching game 
+      #we be stubbin' 
     end
   end
 end
