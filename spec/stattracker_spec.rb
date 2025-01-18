@@ -2,16 +2,26 @@ require 'spec_helper'
 require 'csv' 
 
 RSpec.describe StatTracker do
-  let(:locations) do
-    {
+  # let(:locations) do
+  #   {
+  #     games: './data/games.csv',        
+  #     teams: './data/teams.csv',        
+  #     game_teams: './data/game_teams.csv' 
+  #   }
+  # end
+
+  before(:all) do
+    locations = {
       games: './data/games.csv',        
       teams: './data/teams.csv',        
       game_teams: './data/game_teams.csv' 
     }
-  end
 
+    @stat_tracker = StatTracker.from_csv(locations)   #This now also builds the game objects (@matches) and team objects (@clubs)
+  end
+  
   before(:each) do
-    @stat_tracker = StatTracker.from_csv(locations)
+    # @stat_tracker = StatTracker.from_csv(locations)
     # @stat_tracker.create_all_games
 
     #Here's another instance with shorter datasets loaded for simpler testing:
@@ -21,7 +31,10 @@ RSpec.describe StatTracker do
       game_teams: './data/short_test_game_teams.csv',
     }
     @stat_tracker_short = StatTracker.from_csv(shorter_data_locations)
-    @stat_tracker_short.create_all_games
+    # @stat_tracker_short.create_all_games
+
+    # binding.pry
+
   end
 
   
