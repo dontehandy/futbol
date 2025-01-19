@@ -4,9 +4,9 @@ SimpleCov.start do
 end
 
 require 'rspec'
-require './lib/stat_tracker'
-require './lib/game'
-require './lib/team'
+require_relative '../lib/stat_tracker'
+require_relative '../lib/game'
+require_relative '../lib/team'
 require 'pry'
 require 'csv'
 
