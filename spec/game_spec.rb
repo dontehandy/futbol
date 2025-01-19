@@ -15,7 +15,7 @@ RSpec.describe Game do
     random_game = @stat_tracker_short.matches[9]
 
     expect(random_game).to be_a(Game)
-    #Info from games.csv
+    #Info imported from games.csv
     expect(random_game.game_id).to eq("2016021087")
     expect(random_game.season).to eq("20162017")
     expect(random_game.type).to eq("Regular Season")

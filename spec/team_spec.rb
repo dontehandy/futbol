@@ -41,18 +41,8 @@ RSpec.describe Team do
 
     random_team = @stat_tracker_short.clubs[14]
 
-    # game1_hash = {}
-
-    # binding.pry
-
-    # random_team.associate_games_with_team(@stat_tracker_short.matches)
-
-    # binding.pry
-
     expect(random_team.games_played.length).to eq(1)
     expect(random_team.games_played[0].game_stats[:away][:head_coach]).to eq("Mike Yeo")
-    #And one more
-
   end
   
 end
