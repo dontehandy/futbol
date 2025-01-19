@@ -103,6 +103,10 @@ class StatTracker
 
     # binding.pry
 
+    # total_goals = @matches.sum do |game|
+    #   game.game_stats[:away][:goals] + game.game_stats[:home][:goals]
+    # end
+
     (total_goals.to_f / @games.length).round(2)
   end
 
@@ -151,10 +155,29 @@ class StatTracker
   end
 
   def create_all_games
-    @games.each do |game|
-      @matches << Game.new(game, game_teams_home_data(game[:game_id]), game_teams_away_data(game[:game_id]))
-    # break if @matches.length > 1000
+    #First, sort @games and @game_teams for quicker processing / exploit alignment
+    sorted_games = @games.sort do |a, b|
+      a[:game_id] <=> b[:game_id]
     end
+    sorted_game_teams = @game_teams.sort do |a, b|
+      a[:game_id] <=> b[:game_id]
+    end
+    
+    if true     #Add a verification method for this soon
+      #If we're here, build game objects from the sorted list; if not, print error message / something else?
+      i = 0
+      while i < sorted_games.length
+        @matches << Game.new(sorted_games[i], sorted_game_teams[2 * i + 1].to_h, sorted_game_teams[2 * i].to_h)
+        i += 1
+      end
+    else
+      puts "Error: data is not structured correctly for proper importing."
+      #Another option: just say the shortcut failed, and run the slow way...
+    end
+    # @games.each do |game|
+    #   @matches << Game.new(game, game_teams_home_data(game[:game_id]), game_teams_away_data(game[:game_id]))
+    # # break if @matches.length > 1000
+    # end
   end
 
   def create_all_teams
