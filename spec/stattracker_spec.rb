@@ -177,5 +177,33 @@ RSpec.describe StatTracker do
       expect(@stat_tracker_short.worst_offense).to eq("Chicago Red Stars")
     end
   end
+
+  describe '#most_accurate_team' do #placeholder
+    xit 'returns the team with the highest shots-to-goals ratio for the season' do
+      expect(@stat_tracker.most_accurate_team("20132014")).to eq "Real Salt Lake"
+      expect(@stat_tracker.most_accurate_team("20142015")). to eq "Toronto FC"
+    end
+  end
+
+  describe '#least_accurate_team' do #placeholder
+    xit 'returns the team with the lowest shots-to-goals ratio for the season' do
+      expect(@stat_tracker.least_accurate_team("20132014")).to eq "New York City FC"
+      expect(@stat_tracker.least_accurate_team("20142015")). to eq "Columbus Crew SC"
+    end
+  end
+
+  describe '#most_tackles' do #placeholder
+    xit 'returns the team with the most tackles for the season' do
+      expect(@stat_tracker.most_tackles("20132014")).to eq "FC Cincinnati"
+      expect(@stat_tracker.most_tackles("20142015")).to eq "Seattle Sounders FC"
+    end
+  end
+
+  describe '#fewest_tackles' do #placeholder
+    xit 'returns the team with the fewest tackles for the season' do
+      expect(@stat_tracker.fewest_tackles("20132014")).to eq "Atlanta United"
+      expect(@stat_tracker.fewest_tackles("20142015")).to eq "Orlando City SC"
+    end
+  end
 end
 

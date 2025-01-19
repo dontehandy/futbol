@@ -365,6 +365,7 @@ class StatTracker
     @teams.count
   end
 
+shorter_testing_data_files_2
   def verify_alignment(sorted_games_data, sorted_game_teams_data)
     #Makes sure the files are correctly aligned for quicker reading / processing
     i = 0
@@ -379,5 +380,92 @@ class StatTracker
     return true     #For now, just return true (causing issues with random short dataset)
     # return true if num_correct == @games.length
     # return false
+
+  def most_accurate_team(season)
+    team_accuracy = {}
+
+    # Iterate through each game team to calculate goals and shots for each team in the given season
+    @game_teams.each do |game_team|
+      matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless matching_game && matching_game[:season] == season
+
+      team_id = game_team[:team_id]
+      team_accuracy[team_id] ||= { goals: 0, shots: 0 }
+      team_accuracy[team_id][:goals] += game_team[:goals].to_i
+      team_accuracy[team_id][:shots] += game_team[:shots].to_i
+    end
+
+    return nil if team_accuracy.empty?
+
+    # Find the team with the highest goals-to-shots ratio
+    best_team_id = team_accuracy.max_by { |team_id, stats| stats[:goals].to_f / stats[:shots] }&.first
+
+    @teams.find { |team| team[:team_id] == best_team_id }[:teamname]
+  end
+
+  def least_accurate_team(season)
+    team_accuracy = {}
+
+    # Iterate through each game team to calculate goals and shots for each team in the given season
+    @game_teams.each do |game_team|
+      matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless matching_game && matching_game[:season] == season
+
+      team_id = game_team[:team_id]
+      team_accuracy[team_id] ||= { goals: 0, shots: 0 }
+      team_accuracy[team_id][:goals] += game_team[:goals].to_i
+      team_accuracy[team_id][:shots] += game_team[:shots].to_i
+    end
+
+    return nil if team_accuracy.empty?
+
+    # Find the team with the lowest goals-to-shots ratio
+    worst_team_id = team_accuracy.min_by { |team_id, stats| stats[:goals].to_f / stats[:shots] }&.first
+
+    @teams.find { |team| team[:team_id] == worst_team_id }[:teamname]
+  end
+
+  def most_tackles(season)
+    team_tackles = {}
+
+    # Iterate through each game team to calculate tackles for each team in the given season
+    @game_teams.each do |game_team|
+      matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless matching_game && matching_game[:season] == season
+
+      team_id = game_team[:team_id]
+      team_tackles[team_id] ||= 0
+      team_tackles[team_id] += game_team[:tackles].to_i
+    end
+
+    return nil if team_tackles.empty?
+
+    # Find the team with the most tackles
+    most_tackles_team_id = team_tackles.max_by { |team_id, tackles| tackles }&.first
+
+    @teams.find { |team| team[:team_id] == most_tackles_team_id }[:teamname]
+  end
+
+  def fewest_tackles(season)
+    team_tackles = {}
+
+    # Iterate through each game team to calculate tackles for each team in the given season
+    @game_teams.each do |game_team|
+      matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless matching_game && matching_game[:season] == season
+
+      team_id = game_team[:team_id]
+      team_tackles[team_id] ||= 0
+      team_tackles[team_id] += game_team[:tackles].to_i
+    end
+
+    return nil if team_tackles.empty?
+
+    # Find the team with the fewest tackles
+    fewest_tackles_team_id = team_tackles.min_by { |team_id, tackles| tackles }&.first
+
+    @teams.find { |team| team[:team_id] == fewest_tackles_team_id }[:teamname]
+
   end
 end
+
