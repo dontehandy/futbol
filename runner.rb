@@ -11,7 +11,5 @@ locations = {
 }
 
 stat_tracker = StatTracker.from_csv(locations)
-# stat_tracker.create_all_games
-# stat_tracker.create_all_teams
 
 binding.pry
