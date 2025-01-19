@@ -39,9 +39,11 @@ Mark Kendall
 
 
 
+to use spec_harness:
+
 double check: Change into the futbol_spec_harness directory and run bundle from the command line. If you get an error that says the bundle command cannot be found, run gem install bundle from the command line and try again.
 
 to use spec harness quickly, run this command from futbol_spec_harness: bundle exec rspec --format documentation 
 
-*may have to kill terminal after running
+*may have to kill terminal or let it run its course (the last 4 take like 1 minute a piece). afterward control c + control c. 
 ```
