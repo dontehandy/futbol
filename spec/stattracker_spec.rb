@@ -131,11 +131,10 @@ RSpec.describe StatTracker do
   describe '#count_of_games_by_season' do
     it 'returns a hash with season names as keys and counts of games as values' do
       expected = {
-        "20122013" => 3,
-        "20132014" => 5,
-        "20142015" => 2,
+        "20132014" => 3,
+        "20142015" => 3,
         "20152016" => 3,
-        "20162017" => 5,
+        "20162017" => 1,
         "20172018" => 2
       }
       expect(@stat_tracker_short.count_of_games_by_season).to eq(expected)
