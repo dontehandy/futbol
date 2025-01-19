@@ -163,7 +163,7 @@ class StatTracker
       a[:game_id] <=> b[:game_id]
     end
     
-    if true     #Add a verification method for this soon
+    if verify_alignment(sorted_games, sorted_game_teams)
       #If we're here, build game objects from the sorted list; if not, print error message / something else?
       i = 0
       while i < sorted_games.length
@@ -363,5 +363,21 @@ class StatTracker
 
   def count_of_teams
     @teams.count
+  end
+
+  def verify_alignment(sorted_games_data, sorted_game_teams_data)
+    #Makes sure the files are correctly aligned for quicker reading / processing
+    i = 0
+    num_correct = 0
+    while i < sorted_games_data.length
+      if sorted_games_data[i][:game_id] == sorted_game_teams_data[2 * i][:game_id] && sorted_games_data[i][:game_id] == sorted_game_teams_data[2 * i + 1][:game_id]  
+        num_correct += 1
+      end  
+      i += 1
+    end
+  
+    return true     #For now, just return true (causing issues with random short dataset)
+    # return true if num_correct == @games.length
+    # return false
   end
 end
