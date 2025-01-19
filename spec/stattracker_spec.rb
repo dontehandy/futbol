@@ -124,7 +124,7 @@ RSpec.describe StatTracker do
 
   describe '#highest_scoring_visitor' do
     it 'returns the team with the highest average score when visitor from short_games.csv' do
-      expect(@stat_tracker_short.highest_scoring_visitor).to eq("Orlando City SC")
+      expect(@stat_tracker_short.highest_scoring_visitor).to eq("Seattle Sounders FC")
     end
   end
 
@@ -145,19 +145,19 @@ RSpec.describe StatTracker do
 
   describe '#highest_scoring_home' do
     it 'returns the team with the highest average score when home from short_games.csv' do
-    expect(@stat_tracker_short.highest_scoring_home).to eq("Portland Thorns FC")
+    expect(@stat_tracker_short.highest_scoring_home).to eq("Houston Dynamo")
     end
   end
 
   describe '#lowest_scoring_home' do
     it 'returns the team with the lowest average score when home from short_games.csv' do
-    expect(@stat_tracker_short.lowest_scoring_home).to eq("Utah Royals FC")
+    expect(@stat_tracker_short.lowest_scoring_home).to eq("Philadelphia Union")
     end
   end
 
   describe '#lowest_scoring_home' do
     it 'returns the team with the lowest average score when home from short_games.csv' do
-    expect(@stat_tracker_short.lowest_scoring_home).to eq("Utah Royals FC")
+    expect(@stat_tracker_short.lowest_scoring_home).to eq("Philadelphia Union")
     end
   end
 
@@ -169,12 +169,12 @@ RSpec.describe StatTracker do
 
   describe '#offense ranks from short_games.csv' do
     it 'returns the team with highest average score' do
-      expect(@stat_tracker_short.best_offense).to eq("Orlando City SC")
+      expect(@stat_tracker_short.best_offense).to eq("Seattle Sounders FC")
 
     end
 
     it 'returns the team with lowest average score' do
-      expect(@stat_tracker_short.worst_offense).to eq("Chicago Red Stars")
+      expect(@stat_tracker_short.worst_offense).to eq("Philadelphia Union")
     end
   end
 

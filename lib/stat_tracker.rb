@@ -365,7 +365,7 @@ class StatTracker
     @teams.count
   end
 
-shorter_testing_data_files_2
+
   def verify_alignment(sorted_games_data, sorted_game_teams_data)
     #Makes sure the files are correctly aligned for quicker reading / processing
     i = 0
@@ -380,7 +380,7 @@ shorter_testing_data_files_2
     return true     #For now, just return true (causing issues with random short dataset)
     # return true if num_correct == @games.length
     # return false
-
+  end
   def most_accurate_team(season)
     team_accuracy = {}
 
