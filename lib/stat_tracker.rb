@@ -385,5 +385,47 @@ class StatTracker
 
     @teams.find { |team| team[:team_id] == worst_team_id }[:teamname]
   end
+
+  def most_tackles(season)
+    team_tackles = {}
+
+    # Iterate through each game team to calculate tackles for each team in the given season
+    @game_teams.each do |game_team|
+      matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless matching_game && matching_game[:season] == season
+
+      team_id = game_team[:team_id]
+      team_tackles[team_id] ||= 0
+      team_tackles[team_id] += game_team[:tackles].to_i
+    end
+
+    return nil if team_tackles.empty?
+
+    # Find the team with the most tackles
+    most_tackles_team_id = team_tackles.max_by { |team_id, tackles| tackles }&.first
+
+    @teams.find { |team| team[:team_id] == most_tackles_team_id }[:teamname]
+  end
+
+  def fewest_tackles(season)
+    team_tackles = {}
+
+    # Iterate through each game team to calculate tackles for each team in the given season
+    @game_teams.each do |game_team|
+      matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless matching_game && matching_game[:season] == season
+
+      team_id = game_team[:team_id]
+      team_tackles[team_id] ||= 0
+      team_tackles[team_id] += game_team[:tackles].to_i
+    end
+
+    return nil if team_tackles.empty?
+
+    # Find the team with the fewest tackles
+    fewest_tackles_team_id = team_tackles.min_by { |team_id, tackles| tackles }&.first
+
+    @teams.find { |team| team[:team_id] == fewest_tackles_team_id }[:teamname]
+  end
 end
 
