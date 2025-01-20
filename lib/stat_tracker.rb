@@ -147,35 +147,6 @@ class StatTracker
     away_teams
   end
 
-  def create_all_games
-    
-    sorted_games = @games.sort do |a, b|
-      a[:game_id] <=> b[:game_id]
-    end
-    sorted_game_teams = @game_teams.sort do |a, b|
-      a[:game_id] <=> b[:game_id]
-    end
-    
-    if verify_alignment(sorted_games, sorted_game_teams)
-      
-      i = 0
-      while i < sorted_games.length
-        @matches << Game.new(sorted_games[i], sorted_game_teams[2 * i + 1].to_h, sorted_game_teams[2 * i].to_h)
-        i += 1
-      end
-    else
-      puts "Error: data is not structured correctly for proper importing."
-      
-    end
-    
-  end
-
-  def create_all_teams
-    @teams.each do |team|
-      @clubs << Team.new(team)
-    end
-  end
-
   def best_offense
     best_team_id = nil
     highest_avg_score = 0.0
@@ -440,5 +411,36 @@ class StatTracker
   
     winning_coach ? winning_coach.first : nil
   end
+  private
+
+  def create_all_teams
+    @teams.each do |team|
+      @clubs << Team.new(team)
+    end
+  end
+
+  def create_all_games
+    
+    sorted_games = @games.sort do |a, b|
+      a[:game_id] <=> b[:game_id]
+    end
+    sorted_game_teams = @game_teams.sort do |a, b|
+      a[:game_id] <=> b[:game_id]
+    end
+    
+    if verify_alignment(sorted_games, sorted_game_teams)
+      
+      i = 0
+      while i < sorted_games.length
+        @matches << Game.new(sorted_games[i], sorted_game_teams[2 * i + 1].to_h, sorted_game_teams[2 * i].to_h)
+        i += 1
+      end
+    else
+      puts "Error: data is not structured correctly for proper importing."
+      
+    end
+    
+  end
+  
 end
 
