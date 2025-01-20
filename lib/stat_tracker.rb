@@ -192,10 +192,15 @@ class StatTracker
 
   def best_offense
     best_team_id = nil
-    highest_avg_score = 0
+    highest_avg_score = 0.0
   
     @clubs.each do |club|
-      total_goals = club.games_played.sum { |game| game.game_stats[:home][:goals].to_f + game.game_stats[:away][:goals].to_f }
+      total_goals = club.games_played.sum do |game|
+        home_goals = game.game_stats[:home][:team_id] == club.team_id ? game.game_stats[:home][:goals].to_f : 0
+        away_goals = game.game_stats[:away][:team_id] == club.team_id ? game.game_stats[:away][:goals].to_f : 0
+        home_goals + away_goals
+      end
+  
       games_played = club.games_played.size
       next if games_played.zero?
   
@@ -214,7 +219,12 @@ class StatTracker
     lowest_avg_score = 999.0
   
     @clubs.each do |club|
-      total_goals = club.games_played.sum { |game| game.game_stats[:home][:goals].to_f + game.game_stats[:away][:goals].to_f }
+      total_goals = club.games_played.sum do |game|
+        home_goals = game.game_stats[:home][:team_id] == club.team_id ? game.game_stats[:home][:goals].to_f : 0
+        away_goals = game.game_stats[:away][:team_id] == club.team_id ? game.game_stats[:away][:goals].to_f : 0
+        home_goals + away_goals
+      end
+  
       games_played = club.games_played.size
       next if games_played.zero?
   

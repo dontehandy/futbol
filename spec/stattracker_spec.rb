@@ -127,9 +127,9 @@ RSpec.describe StatTracker do
     end
   end
 
-  describe '#lowest_scoring_home' do
-    it 'returns the team with the lowest average score when home from short_games.csv' do
-      expect(@stat_tracker_short.lowest_scoring_home). to eq("Philadelphia Union")
+  describe '#lowest_scoring_visitor' do
+    it 'returns the team with the lowest average score when visitor from short_games.csv' do
+      expect(@stat_tracker_short.lowest_scoring_visitor). to eq("Philadelphia Union")
     end
   end
 
@@ -141,11 +141,11 @@ RSpec.describe StatTracker do
 
   describe '#offense ranks from short_games.csv' do
     it 'returns the team with highest average score' do
-      expect(@stat_tracker_short.best_offense).to eq("Seattle Sounders FC")
+      expect(@stat_tracker.best_offense).to eq("Reign FC")
     end
 
     it 'returns the team with lowest average score' do
-      expect(@stat_tracker_short.worst_offense).to eq("Houston Dash")
+      expect(@stat_tracker.worst_offense).to eq("Utah Royals FC")
     end
   end
 
