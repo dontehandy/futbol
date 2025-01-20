@@ -411,7 +411,31 @@ class StatTracker
   
     winning_coach ? winning_coach.first : nil
   end
-  private
+
+  def worst_coach(season)
+    coach_stats = Hash.new { |hash, key| hash[key] = { wins: 0, total: 0 } }
+  
+    @game_teams.each do |game_team|
+      matching_game = @games.find { |g| g[:game_id] == game_team[:game_id] }
+      next unless matching_game && matching_game[:season] == season
+  
+      coach_name = game_team[:head_coach]
+  
+      coach_stats[coach_name][:total] += 1
+      if game_team[:result] == 'WIN'
+        coach_stats[coach_name][:wins] += 1
+      end
+    end
+  
+    worst_coach = coach_stats.min_by do |coach, stats|
+      total_games = stats[:total]
+      next 1 if total_games == 0
+      (stats[:wins].to_f / total_games)
+    end
+  
+    worst_coach ? worst_coach.first : nil
+  end
+  
 
   def create_all_teams
     @teams.each do |team|
