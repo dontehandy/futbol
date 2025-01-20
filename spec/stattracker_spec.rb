@@ -21,7 +21,6 @@ RSpec.describe StatTracker do
     @stat_tracker_short = StatTracker.from_csv(shorter_data_locations)
   end
 
-  #Game Statistics methods
 
   describe '#highest_total_score' do
     it 'returns the highest total score from all games' do
@@ -41,25 +40,25 @@ RSpec.describe StatTracker do
     end
 
     it 'counts all games listed in short_test_game.csv file for game percentage stats' do
-      expect(@stat_tracker_short.total_games).to eq(20)
+      expect(@stat_tracker_short.total_games).to eq(12)
     end
   end
 
   describe '#home_wins' do
     it 'counts all the home wins from the short_test_games.csv accurately' do
-      expect(@stat_tracker_short.home_wins).to eq(9)
+      expect(@stat_tracker_short.home_wins).to eq(4)
     end
   end
   
   describe '#away_wins' do
     it 'counts all the away wins from the short_test_games.csv accurately' do
-      expect(@stat_tracker_short.away_wins).to eq(8)
+      expect(@stat_tracker_short.away_wins).to eq(6)
     end
   end
 
   describe '#ties' do
     it 'counts all the tied games from the short_test_games.csv accurately' do
-      expect(@stat_tracker_short.ties).to eq(3)
+      expect(@stat_tracker_short.ties).to eq(2)
     end
   end
 
@@ -92,7 +91,7 @@ RSpec.describe StatTracker do
 
   describe "creates all games in a dataset" do
     it "returns all games in a smaller dataset" do
-      expect(@stat_tracker_short.matches.length).to eq(20)
+      expect(@stat_tracker_short.matches.length).to eq(12)
     end
   end
 
@@ -127,12 +126,11 @@ RSpec.describe StatTracker do
     end
   end
 
-  xit "#lowest_scoring_home_team" do #placeholder
-    expect(@stat_tracker.lowest_scoring_home_team).to eq "Utah Royals FC"
-  end
+  describe '#lowest_scoring_visitor' do
+    it 'returns the team with the lowest average score when visitor from short_games.csv' do
+      expect(@stat_tracker_short.lowest_scoring_visitor). to eq("Philadelphia Union")
+    end
 
-  xit "#highest_scoring_home_team" do #placeholder
-    expect(@stat_tracker.highest_scoring_home_team).to eq "Reign FC"
   end
 
   describe '#count_of_teams' do
@@ -143,11 +141,11 @@ RSpec.describe StatTracker do
 
   describe '#offense ranks from short_games.csv' do
     it 'returns the team with highest average score' do
-      expect(@stat_tracker_short.best_offense).to eq("Seattle Sounders FC")
+      expect(@stat_tracker.best_offense).to eq("Reign FC")
     end
 
     it 'returns the team with lowest average score' do
-      expect(@stat_tracker_short.worst_offense).to eq("Houston Dash")
+      expect(@stat_tracker.worst_offense).to eq("Utah Royals FC")
     end
   end
 
@@ -155,7 +153,6 @@ RSpec.describe StatTracker do
     before(:all) do
       @stat_tracker = StatTracker.new
 
-      # Shared data set for all tests
       @stat_tracker.instance_variable_set(:@games, [
         { game_id: '2014020651', season: '20142015' },
         { game_id: '2014020652', season: '20142015' },
@@ -179,8 +176,7 @@ RSpec.describe StatTracker do
       ])
     end
 
-    # The following tests use the shared data set defined above to ensure consistency and avoid redundancy.
-
+    
     describe '#most_accurate_team' do
       it 'returns the team with the highest shots-to-goals ratio for the season' do
         expect(@stat_tracker.most_accurate_team('20142015')).to eq('Team Z') # Highest ratio (3 goals / 6 shots = 0.5)
@@ -219,6 +215,13 @@ RSpec.describe StatTracker do
       it 'returns nil if no data matches the season' do
         expect(@stat_tracker.fewest_tackles('20202021')). to be_nil
       end
+    end
+  end
+
+  describe '#coach success' do
+    it 'returns winningest coach' do
+      expect(@stat_tracker.winningest_coach("20132014")).to eq "Claude Julien"
+    expect(@stat_tracker.winningest_coach("20142015")).to eq "Alain Vigneault"
     end
   end
 end
