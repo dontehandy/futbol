@@ -432,5 +432,45 @@ class StatTracker
     @teams.find { |team| team[:team_id] == fewest_tackles_team_id }[:teamname]
 
   end
+
+  def highest_scoring_home_team
+    highest_team_id = nil
+    highest_avg_score = 0.0
+  
+    @teams.each do |team|
+      home_games = @game_teams.select { |game| game[:team_id] == team[:team_id] && game[:hoa] == "home" }
+      total_goals = home_games.sum { |game| game[:goals].to_f }
+      games_played = home_games.size
+      next if games_played.zero?
+  
+      avg_score = total_goals / games_played
+      if avg_score > highest_avg_score
+        highest_avg_score = avg_score
+        highest_team_id = team[:team_id]
+      end
+    end
+  
+    @teams.find { |team| team[:team_id] == highest_team_id }[:teamname]
+  end
+
+  def lowest_scoring_home_team
+    lowest_team_id = nil
+    lowest_avg_score = Float::INFINITY
+  
+    @teams.each do |team|
+      home_games = @game_teams.select { |game| game[:team_id] == team[:team_id] && game[:hoa] == "home" }
+      total_goals = home_games.sum { |game| game[:goals].to_f }
+      games_played = home_games.size
+      next if games_played.zero?
+  
+      avg_score = total_goals / games_played
+      if avg_score < lowest_avg_score
+        lowest_avg_score = avg_score
+        lowest_team_id = team[:team_id]
+      end
+    end
+  
+    @teams.find { |team| team[:team_id] == lowest_team_id }[:teamname]
+  end
 end
 

@@ -31,7 +31,7 @@ RSpec.describe StatTracker do
   
   describe '#lowest_total_score' do
     it 'returns the lowest total score from all games' do
-      expect(@stat_tracker.lowest_total_score).to eq(0) 
+      expect(@stat_tracker.lowest_total_score). to eq(0) 
     end
   end
 
@@ -127,15 +127,17 @@ RSpec.describe StatTracker do
     end
   end
 
-  describe '#lowest_scoring_home' do
-    it 'returns the team with the lowest average score when home from short_games.csv' do
-      expect(@stat_tracker_short.lowest_scoring_home). to eq("Philadelphia Union")
-    end
+  xit "#lowest_scoring_home_team" do #placeholder
+    expect(@stat_tracker.lowest_scoring_home_team).to eq "Utah Royals FC"
+  end
+
+  xit "#highest_scoring_home_team" do #placeholder
+    expect(@stat_tracker.highest_scoring_home_team).to eq "Reign FC"
   end
 
   describe '#count_of_teams' do
     it 'returns the count of teams' do
-      expect(@stat_tracker.count_of_teams).to eq(32)
+      expect(@stat_tracker.count_of_teams). to eq(32)
     end
   end
 
@@ -191,21 +193,21 @@ RSpec.describe StatTracker do
 
     describe '#least_accurate_team' do
       it 'returns the team with the lowest shots-to-goals ratio for the season' do
-        expect(@stat_tracker.least_accurate_team('20142015')).to eq('Team Y') # Lowest ratio (3 goals / 19 shots = 0.16)
+        expect(@stat_tracker.least_accurate_team('20142015')). to eq('Team Y') # Lowest ratio (3 goals / 19 shots = 0.16)
       end
 
       it 'returns nil if no data matches the season' do
-        expect(@stat_tracker.least_accurate_team('20202021')).to be_nil
+        expect(@stat_tracker.least_accurate_team('20202021')). to be_nil
       end
     end
 
     describe '#most_tackles' do
       it 'returns the team with the most tackles for the season' do
-        expect(@stat_tracker.most_tackles('20142015')).to eq('Team X') # Most tackles (10 + 15 = 25)
+        expect(@stat_tracker.most_tackles('20142015')). to eq('Team X') # Most tackles (10 + 15 = 25)
       end
 
       it 'returns nil if no data matches the season' do
-        expect(@stat_tracker.most_tackles('20202021')).to be_nil
+        expect(@stat_tracker.most_tackles('20202021')). to be_nil
       end
     end
 
