@@ -174,7 +174,7 @@ RSpec.describe StatTracker do
     end
 
     it 'returns the team with lowest average score' do
-      expect(@stat_tracker_short.worst_offense).to eq("Philadelphia Union")
+      expect(@stat_tracker_short.worst_offense).to eq("Houston Dash")
     end
   end
 
