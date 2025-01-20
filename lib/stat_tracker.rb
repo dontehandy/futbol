@@ -187,160 +187,121 @@ class StatTracker
   end
 
   def best_offense
-    team_scores = {}
-  
-    @game_teams.each do |game|
-      team_id = game[:team_id]
-      team_scores[team_id] ||= [0, 0] 
-      team_scores[team_id][0] += game[:goals].to_i
-      team_scores[team_id][1] += 1
-    end
-   
     best_team_id = nil
     highest_avg_score = 0
   
-    team_scores.each do |team_id, (total_goals, games_played)|
-      avg_score = total_goals.to_f / games_played
+    @clubs.each do |club|
+      total_goals = club.games_played.sum { |game| game.game_stats[:home][:goals].to_f + game.game_stats[:away][:goals].to_f }
+      games_played = club.games_played.size
+      next if games_played.zero?
+  
+      avg_score = total_goals / games_played
       if avg_score > highest_avg_score
         highest_avg_score = avg_score
-        best_team_id = team_id
+        best_team_id = club.team_id
       end
     end
-    
-    @teams.find { |team| team[:team_id] == best_team_id }[:teamname]
+  
+    @clubs.find { |club| club.team_id == best_team_id }&.team_name
   end
 
   def worst_offense
-    team_scores = {}
-  
-    @game_teams.each do |game|
-      team_id = game[:team_id]
-      team_scores[team_id] ||= [0, 0] 
-      team_scores[team_id][0] += game[:goals].to_i
-      team_scores[team_id][1] += 1
-    end
-  
     worst_team_id = nil
-    lowest_avg_score = Float::INFINITY
+    lowest_avg_score = 999.0
   
-    team_scores.each do |team_id, (total_goals, games_played)|
-      avg_score = total_goals.to_f / games_played
+    @clubs.each do |club|
+      total_goals = club.games_played.sum { |game| game.game_stats[:home][:goals].to_f + game.game_stats[:away][:goals].to_f }
+      games_played = club.games_played.size
+      next if games_played.zero?
+  
+      avg_score = total_goals / games_played
       if avg_score < lowest_avg_score
         lowest_avg_score = avg_score
-        worst_team_id = team_id
+        worst_team_id = club.team_id
       end
     end
   
-    @teams.find { |team| team[:team_id] == worst_team_id }[:teamname]
+    @clubs.find { |club| club.team_id == worst_team_id }&.team_name
   end
 
   def highest_scoring_visitor
-    team_scores = {}
-  
-    @game_teams.each do |game|
-      if game[:hoa] == 'away'
-        team_id = game[:team_id]
-        if team_scores[team_id].nil?
-          team_scores[team_id] = [0, 0]  # [total goals, games played]
-        end
-        team_scores[team_id][0] += game[:goals].to_i
-        team_scores[team_id][1] += 1
-      end
-    end
     highest_team_id = nil
-    highest_avg_score = 0
+    highest_avg_score = 0.0
   
-    team_scores.each do |team_id, (total_goals, games_played)|
-      avg_score = total_goals.to_f / games_played
+    @clubs.each do |club|
+      away_games = club.games_played.select { |game| game.game_stats[:away][:team_id] == club.team_id }
+      total_goals = away_games.sum { |game| game.game_stats[:away][:goals].to_f }
+      games_played = away_games.size
+      next if games_played.zero?
+  
+      avg_score = total_goals / games_played
       if avg_score > highest_avg_score
         highest_avg_score = avg_score
-        highest_team_id = team_id
+        highest_team_id = club.team_id
       end
     end
-    @teams.find { |team| team[:team_id] == highest_team_id }[:teamname]
+  
+    @clubs.find { |club| club.team_id == highest_team_id }&.team_name
   end
 
   def highest_scoring_home
-    team_scores = {}
-  
-    @game_teams.each do |game|
-      if game[:hoa] == 'home'
-        team_id = game[:team_id]
-        if team_scores[team_id].nil?
-          team_scores[team_id] = [0, 0] 
-        end
-        team_scores[team_id][0] += game[:goals].to_i
-        team_scores[team_id][1] += 1
-      end
-    end
-  
     highest_team_id = nil
-    highest_avg_score = 0
+    highest_avg_score = 0.0
   
-    team_scores.each do |team_id, (total_goals, games_played)|
-      avg_score = total_goals.to_f / games_played
+    @clubs.each do |club|
+      home_games = club.games_played.select { |game| game.game_stats[:home][:team_id] == club.team_id }
+      total_goals = home_games.sum { |game| game.game_stats[:home][:goals].to_f }
+      games_played = home_games.size
+      next if games_played.zero?
+  
+      avg_score = total_goals / games_played
       if avg_score > highest_avg_score
         highest_avg_score = avg_score
-        highest_team_id = team_id
+        highest_team_id = club.team_id
       end
     end
-    @teams.find { |team| team[:team_id] == highest_team_id }[:teamname]
+  
+    @clubs.find { |club| club.team_id == highest_team_id }&.team_name
   end
 
   def lowest_scoring_home
-    team_scores = {}
-  
-    @game_teams.each do |game|
-      if game[:hoa] == 'home'
-        team_id = game[:team_id]
-        if team_scores[team_id].nil?
-          team_scores[team_id] = [0, 0]
-        end
-        team_scores[team_id][0] += game[:goals].to_i
-        team_scores[team_id][1] += 1
-      end
-    end
-  
     lowest_team_id = nil
-    lowest_avg_score = 999
+    lowest_avg_score = 999.0
   
-    team_scores.each do |team_id, (total_goals, games_played)|
-      avg_score = total_goals.to_f / games_played
+    @clubs.each do |club|
+      home_games = club.games_played.select { |game| game.game_stats[:home][:team_id] == club.team_id }
+      total_goals = home_games.sum { |game| game.game_stats[:home][:goals].to_f }
+      games_played = home_games.size
+      next if games_played.zero?
+  
+      avg_score = total_goals / games_played
       if avg_score < lowest_avg_score
         lowest_avg_score = avg_score
-        lowest_team_id = team_id
+        lowest_team_id = club.team_id
       end
     end
   
-    @teams.find { |team| team[:team_id] == lowest_team_id }[:teamname]
+    @clubs.find { |club| club.team_id == lowest_team_id }&.team_name
   end
 
   def lowest_scoring_visitor
-    team_scores = {}
-  
-    @game_teams.each do |game|
-      if game[:hoa] == 'away'
-        team_id = game[:team_id]
-        if team_scores[team_id].nil?
-          team_scores[team_id] = [0, 0]
-        end
-        team_scores[team_id][0] += game[:goals].to_i
-        team_scores[team_id][1] += 1
-      end
-    end
-  
     lowest_team_id = nil
-    lowest_avg_score = 999
+    lowest_avg_score = 999.0
   
-    team_scores.each do |team_id, (total_goals, games_played)|
-      avg_score = total_goals.to_f / games_played
+    @clubs.each do |club|
+      away_games = club.games_played.select { |game| game.game_stats[:away][:team_id] == club.team_id }
+      total_goals = away_games.sum { |game| game.game_stats[:away][:goals].to_f }
+      games_played = away_games.size
+      next if games_played.zero?
+  
+      avg_score = total_goals / games_played
       if avg_score < lowest_avg_score
         lowest_avg_score = avg_score
-        lowest_team_id = team_id
+        lowest_team_id = club.team_id
       end
     end
   
-    @teams.find { |team| team[:team_id] == lowest_team_id }[:teamname]
+    @clubs.find { |club| club.team_id == lowest_team_id }&.team_name
   end
 
   def count_of_games_by_season
