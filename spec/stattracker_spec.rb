@@ -177,6 +177,8 @@ RSpec.describe StatTracker do
       ])
     end
 
+    # The following tests use the shared data set defined above to ensure consistency and avoid redundancy.
+
     describe '#most_accurate_team' do
       it 'returns the team with the highest shots-to-goals ratio for the season' do
         expect(@stat_tracker.most_accurate_team('20142015')).to eq('Team Z')
