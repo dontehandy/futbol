@@ -37,22 +37,13 @@ Mark Kendall
 [LinkedIn profile](https://www.linkedin.com/in/mark-kendall-786b0b2a8/)  
 [GitHub profile](https://github.com/mkendall42)  
 
-<!-- # SimpleCov Setup
 
-To monitor test coverage with SimpleCov, follow these steps:
 
-1. Add SimpleCov to your Gemfile:
-    ```ruby
-    gem 'simplecov', require: false, group: :test
-    ```
+to use spec_harness:
 
-2. Run `bundle install` to install the gem.
+double check: Change into the futbol_spec_harness directory and run bundle from the command line. If you get an error that says the bundle command cannot be found, run gem install bundle from the command line and try again.
 
-3. At the top of your `test_helper.rb` or `spec_helper.rb` file, add the following lines:
-    ```ruby
-    require 'simplecov'
-    SimpleCov.start
-    ```
+to use spec harness quickly, run this command from futbol_spec_harness: bundle exec rspec --format documentation 
 
-4. Run your tests as usual. SimpleCov will generate a coverage report in the `coverage` directory.
- -->
+*may have to kill terminal or let it run its course (the last 4 take like 1 minute a piece). afterward control c + control c. 
+```
