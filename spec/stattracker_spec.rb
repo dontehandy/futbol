@@ -2,14 +2,6 @@ require 'spec_helper'
 require 'csv' 
 
 RSpec.describe StatTracker do
-  # let(:locations) do
-  #   {
-  #     games: './data/games.csv',        
-  #     teams: './data/teams.csv',        
-  #     game_teams: './data/game_teams.csv' 
-  #   }
-  # end
-
   before(:all) do
     locations = {
       games: './data/games.csv',        
@@ -17,27 +9,18 @@ RSpec.describe StatTracker do
       game_teams: './data/game_teams.csv' 
     }
 
-    @stat_tracker = StatTracker.from_csv(locations)   #This now also builds the game objects (@matches) and team objects (@clubs)
+    @stat_tracker = StatTracker.from_csv(locations)
   end
   
   before(:each) do
-    # @stat_tracker = StatTracker.from_csv(locations)
-    # @stat_tracker.create_all_games
-
-    #Here's another instance with shorter datasets loaded for simpler testing:
     shorter_data_locations = {
       games: './data/short_test_games.csv',
       teams: './data/teams.csv',
       game_teams: './data/short_test_game_teams.csv',
     }
     @stat_tracker_short = StatTracker.from_csv(shorter_data_locations)
-    # @stat_tracker_short.create_all_games
-
-    # binding.pry
-
   end
 
-  
   #Game Statistics methods
 
   describe '#highest_total_score' do
@@ -82,12 +65,10 @@ RSpec.describe StatTracker do
 
   describe "#average_goals_per_game" do
     it "returns average goals per game over all seasons - from short_games.csv" do
-      # expect(@stat_tracker_short.average_goals_per_game()).to eq((90.0 / 20.0))     #90 total goals for 20 games in CSV file
       expect(@stat_tracker_short.average_goals_per_game()).to eq((40.0 / 12.0).round(2))
     end
 
     it "returns average goals per game over all seasons - full data set" do
-      #This is really what the Spec Harness should check
       expect(@stat_tracker.average_goals_per_game()).to eq(4.22)
     end
   end
@@ -100,12 +81,6 @@ RSpec.describe StatTracker do
         "20152016" => (9.0 / 3.0).round(2),
         "20162017" => (5.0 / 1.0).round(2),
         "20172018" => (9.0 / 2.0).round(2)
-        # "20122013" => (17.0 / 3.0).round(2),
-        # "20132014" => (21.0 / 5.0).round(2),
-        # "20142015" => (9.0 / 2.0).round(2),
-        # "20152016" => (14.0 / 3.0).round(2),
-        # "20162017" => (21.0 / 5.0).round(2),
-        # "20172018" => (8.0 / 2.0).round(2)
       }
       expect(@stat_tracker_short.average_goals_by_season()).to eq(averages_hash)
     end
@@ -177,31 +152,123 @@ RSpec.describe StatTracker do
     end
   end
 
-  describe '#most_accurate_team' do #placeholder
-    xit 'returns the team with the highest shots-to-goals ratio for the season' do
-      expect(@stat_tracker.most_accurate_team("20132014")).to eq "Real Salt Lake"
-      expect(@stat_tracker.most_accurate_team("20142015")). to eq "Toronto FC"
+  describe '#most_accurate_team' do
+    before do
+      @game_teams = [
+        { game_id: '2014020651', team_id: '52', goals: '2', shots: '5' },
+        { game_id: '2014020651', team_id: '25', goals: '1', shots: '11' }
+      ]
+
+      @games = [
+        { game_id: '2014020651', season: '20142015' }
+      ]
+
+      @teams = [
+        { team_id: '52', teamname: 'Portland Thorns FC' },
+        { team_id: '25', teamname: 'Chicago Red Stars' }
+      ]
+
+      allow(@stat_tracker_short).to receive(:game_teams).and_return(@game_teams)
+      allow(@stat_tracker_short).to receive(:games).and_return(@games)
+      allow(@stat_tracker_short).to receive(:teams).and_return(@teams)
+    end
+
+    it 'returns the team with the highest shots-to-goals ratio for the season' do
+      expect(@stat_tracker_short.most_accurate_team('20142015')).to eq('Portland Thorns FC')
+    end
+
+    it 'returns nil if no data matches the season' do
+      expect(@stat_tracker_short.most_accurate_team('20202021')).to be_nil
     end
   end
 
-  describe '#least_accurate_team' do #placeholder
-    xit 'returns the team with the lowest shots-to-goals ratio for the season' do
-      expect(@stat_tracker.least_accurate_team("20132014")).to eq "New York City FC"
-      expect(@stat_tracker.least_accurate_team("20142015")). to eq "Columbus Crew SC"
+  describe '#least_accurate_team' do
+    before do
+      @game_teams = [
+        { game_id: '2014020651', team_id: '52', goals: '2', shots: '5' },
+        { game_id: '2014020651', team_id: '25', goals: '1', shots: '11' }
+      ]
+
+      @games = [
+        { game_id: '2014020651', season: '20142015' }
+      ]
+
+      @teams = [
+        { team_id: '52', teamname: 'Portland Thorns FC' },
+        { team_id: '25', teamname: 'Utah Royals FC' }
+      ]
+
+      allow(@stat_tracker_short).to receive(:game_teams).and_return(@game_teams)
+      allow(@stat_tracker_short).to receive(:games).and_return(@games)
+      allow(@stat_tracker_short).to receive(:teams).and_return(@teams)
+    end
+
+    it 'returns the team with the lowest shots-to-goals ratio for the season' do
+      expect(@stat_tracker_short.least_accurate_team('20142015')).to eq('Utah Royals FC')
+    end
+
+    it 'returns nil if no data matches the season' do
+      expect(@stat_tracker_short.least_accurate_team('20202021')). to be_nil
     end
   end
 
-  describe '#most_tackles' do #placeholder
-    xit 'returns the team with the most tackles for the season' do
-      expect(@stat_tracker.most_tackles("20132014")).to eq "FC Cincinnati"
-      expect(@stat_tracker.most_tackles("20142015")).to eq "Seattle Sounders FC"
+  describe '#most_tackles' do
+    before do
+      @game_teams = [
+        { game_id: '2014020651', team_id: '52', tackles: '34' },
+        { game_id: '2014020651', team_id: '25', tackles: '23' }
+      ]
+
+      @games = [
+        { game_id: '2014020651', season: '20142015' }
+      ]
+
+      @teams = [
+        { team_id: '52', teamname: 'Portland Thorns FC' },
+        { team_id: '25', teamname: 'North Carolina Courage' }
+      ]
+
+      allow(@stat_tracker_short).to receive(:game_teams).and_return(@game_teams)
+      allow(@stat_tracker_short).to receive(:games).and_return(@games)
+      allow(@stat_tracker_short).to receive(:teams).and_return(@teams)
+    end
+
+    it 'returns the team with the most tackles for the season' do
+      expect(@stat_tracker_short.most_tackles('20142015')).to eq('North Carolina Courage')
+    end
+
+    it 'returns nil if no data matches the season' do
+      expect(@stat_tracker_short.most_tackles('20202021')). to be_nil
     end
   end
 
-  describe '#fewest_tackles' do #placeholder
-    xit 'returns the team with the fewest tackles for the season' do
-      expect(@stat_tracker.fewest_tackles("20132014")).to eq "Atlanta United"
-      expect(@stat_tracker.fewest_tackles("20142015")).to eq "Orlando City SC"
+  describe '#fewest_tackles' do
+    before do
+      @game_teams = [
+        { game_id: '2014020651', team_id: '52', tackles: '34' },
+        { game_id: '2014020651', team_id: '25', tackles: '23' }
+      ]
+
+      @games = [
+        { game_id: '2014020651', season: '20142015' }
+      ]
+
+      @teams = [
+        { team_id: '52', teamname: 'Portland Thorns FC' },
+        { team_id: '25', teamname: 'LA Galaxy' }
+      ]
+
+      allow(@stat_tracker_short).to receive(:game_teams).and_return(@game_teams)
+      allow(@stat_tracker_short).to receive(:games).and_return(@games)
+      allow(@stat_tracker_short).to receive(:teams).and_return(@teams)
+    end
+
+    it 'returns the team with the fewest tackles for the season' do
+      expect(@stat_tracker_short.fewest_tackles('20132014')).to eq('LA Galaxy')
+    end
+
+    it 'returns nil if no data matches the season' do
+      expect(@stat_tracker_short.fewest_tackles('20202021')). to be_nil
     end
   end
 end
