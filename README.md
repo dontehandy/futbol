@@ -1,23 +1,4 @@
-<!-- # Futbol
-
-Starter repository for the [Turing School](https://turing.edu/) Futbol project.
-
-Deliverables
-Your iteration deliverable is to create a README with the following. As you craft your answers, consider how you might talk about these same topics in a job interview after you graduate.
-
-A 1-2 summary or bullet points outlining your plan for check-ins throughout the duration of the project.
-
-A 2-4 sentence summary of your plan for project organization and workflow. This can include bullet points. If you plan to use a project management tool, please include a link to your project board.
-
-A 2-3 sentence summary describing the different approaches your group discussed for project organization and how you collectively made a decision on which to use.
-
-A 2-3 sentence summary describing your approach to the code design. -->
-
-Include link to your initial DTR document and the date it was completed. If you do additional DTRs later in the project, you should link the revised versions here as well with the date. New versions should be listed alongside older versions. Do not delete old DTRs.
-# DTR Document #
-
-[The Audibles Project DTR](https://docs.google.com/document/d/1dS02D4JhDYynw1QMaruTkvfiAfEL96Kf5MeP3zYjDWQ/edit?tab=t.0)
-Completed: 14 January 2025
+# Futbol #
 
 # Contributors #
 
@@ -37,24 +18,50 @@ Mark Kendall
 [LinkedIn profile](https://www.linkedin.com/in/mark-kendall-786b0b2a8/)  
 [GitHub profile](https://github.com/mkendall42)  
 
+# DTR Document #
 
+[The Audibles Project DTR](https://docs.google.com/document/d/1dS02D4JhDYynw1QMaruTkvfiAfEL96Kf5MeP3zYjDWQ/edit?tab=t.0)
+Completed: 14 January 2025
 
-to use spec_harness:
+# Questions #
 
-double check: Change into the futbol_spec_harness directory and run bundle from the command line. If you get an error that says the bundle command cannot be found, run gem install bundle from the command line and try again.
+A 1-2 sentence summary or bullet points outlining your plan for check-ins throughout the duration of the project.
 
-to use spec harness quickly, run this command from futbol_spec_harness: bundle exec rspec --format documentation 
+We established a flexible schedule for our check-ins, designating 12:00 PM Denver time as our meeting time on most days. This practice enabled us to reassess our ongoing tasks and engage in discussions regarding any additional activities that required our attention.
 
-*may have to kill terminal or let it run its course (the last 4 take like 1 minute a piece). afterward control c + control c. 
-```
+-------------------------------------------------------------
 
+A 2-4 sentence summary of your plan for project organization and workflow. This can include bullet points. If you plan to use a project management tool, please include a link to your project board.
 
-/// RETRO: ///
+Our project was structured using GitHub Projects. We would convene for huddles to discuss the tasks at hand and review what had been accomplished. During these meetings, we would mark items off our list, indicating what was currently in progress and what had been completed. The majority of our work was organized through GitHub Projects.
+
+-------------------------------------------------------------
+
+A 2-3 sentence summary describing the different approaches your group discussed for project organization and how you collectively made a decision on which to use.
+
+Most of the discussion regarding how to approach this project centered on acquiring a sample of the provided data. This would enable us to conduct tests, evaluate our methods, and identify which classes we would utilize to bring our objectives to fruition. In the end, we collectively agreed to adopt Mark's suggestion of using short data sets to test our methods, making adjustments as needed during the process.
+
+-------------------------------------------------------------
+
+A 2-3 sentence summary describing your approach to the code design.
+
+Due to time constraints, the code was developed primarily to ensure functionality, which guided our decision-making process. We successfully gathered short data sets and employed test-driven development (TDD) to create our initial draft, which is now ready for submission. Given additional time, adhere to the principles of object-oriented programming (OOP) and refactor our code to enhance its readability and efficiency.
+
+-------------------------------------------------------------
+
+# DTR Document #
+
+[The Audibles Project DTR](https://docs.google.com/document/d/1dS02D4JhDYynw1QMaruTkvfiAfEL96Kf5MeP3zYjDWQ/edit?tab=t.0)
+Completed: 14 January 2025
+
+# RETRO: #
 
 The name of and links (if applicable) to any tools you used for retro: 
 
 No formal tools were used to format our retro, we all took notes and used topics of discussion to address past issues, formulate plans for the future, and we did use the Projects tab in GitHub for organizing work that had been done, needed to be done, or was in progress.
---------------------------------------------
+
+-------------------------------------------------------------
+
 Top 3 things that went well during your project:
 
 1. Communication was of the utmost importance to our group, something we discussed at length in our DTR and in our daily meetings. We were able to keep open lines of communication through slack text & slack huddles to accomplish tasks and complete the project.
@@ -64,6 +71,7 @@ Top 3 things that went well during your project:
 3. Flexibility in working environments was very productive. We worked in meetings as a full group of four, pairing off and using the driver/navigator method, as well as tackling the project async as individuals. 
 
 -------------------------------------------------------------
+
 Top 3 things your team would do differently next time:
 
 1. Utilize the Spec Harness as a tool much sooner. There were many re-factoring efforts that could have been avoided had we established and continued to utilize the Spec Harness early on in the project.
