@@ -35,7 +35,7 @@ A 2-4 sentence summary of your plan for project organization and workflow. This 
 
 Our project was structured using GitHub Projects. We would convene for huddles to discuss the tasks at hand and review what had been accomplished. During these meetings, we would mark items off our list, indicating what was currently in progress and what had been completed. The majority of our work was organized through GitHub Projects.
 
-https://github.com/users/dontehandy/projects/2/views/1
+https://github.com/users/dontehandy/projects/2/views/1 and can also be found in the bookmarks section of our Slack Group. #Audibles
 
 -------------------------------------------------------------
 
