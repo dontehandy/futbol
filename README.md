@@ -23,7 +23,7 @@ Mark Kendall
 [The Audibles Project DTR](https://docs.google.com/document/d/1dS02D4JhDYynw1QMaruTkvfiAfEL96Kf5MeP3zYjDWQ/edit?tab=t.0)
 Completed: 14 January 2025
 
-# Questions #
+# Summary #
 
 A 1-2 sentence summary or bullet points outlining your plan for check-ins throughout the duration of the project.
 
@@ -34,6 +34,8 @@ We established a flexible schedule for our check-ins, designating 12:00 PM Denve
 A 2-4 sentence summary of your plan for project organization and workflow. This can include bullet points. If you plan to use a project management tool, please include a link to your project board.
 
 Our project was structured using GitHub Projects. We would convene for huddles to discuss the tasks at hand and review what had been accomplished. During these meetings, we would mark items off our list, indicating what was currently in progress and what had been completed. The majority of our work was organized through GitHub Projects.
+
+https://github.com/users/dontehandy/projects/2/views/1
 
 -------------------------------------------------------------
 
@@ -54,7 +56,7 @@ Due to time constraints, the code was developed primarily to ensure functionalit
 [The Audibles Project DTR](https://docs.google.com/document/d/1dS02D4JhDYynw1QMaruTkvfiAfEL96Kf5MeP3zYjDWQ/edit?tab=t.0)
 Completed: 14 January 2025
 
-# RETRO: #
+# RETRO #
 
 The name of and links (if applicable) to any tools you used for retro: 
 
